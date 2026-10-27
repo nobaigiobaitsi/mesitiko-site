@@ -7,11 +7,12 @@ export default function HomeEN() {
   return (
     <>
       <div
-        className="wp-block-cover alignfull has-custom-content-position is-position-top-center has-border-color has-light-border-color has-custom-css wp-custom-css-ebde3099"
+        className="leaf-home-hero wp-block-cover alignfull has-custom-content-position is-position-top-center has-border-color has-light-border-color has-custom-css wp-custom-css-ebde3099"
         style={{ borderWidth: "2px" }}
       >
         <img
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
           decoding="async"
           width="1024"
           height="572"

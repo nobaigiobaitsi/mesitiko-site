@@ -7,11 +7,12 @@ export default function HomeEL() {
   return (
     <>
       <div
-        className="wp-block-cover alignfull has-custom-content-position is-position-top-center has-border-color has-light-border-color has-custom-css wp-custom-css-6e47d11d"
+        className="leaf-home-hero wp-block-cover alignfull has-custom-content-position is-position-top-center has-border-color has-light-border-color has-custom-css wp-custom-css-6e47d11d"
         style={{ borderWidth: "2px" }}
       >
         <img
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
           decoding="async"
           width="1024"
           height="572"
@@ -124,7 +125,6 @@ export default function HomeEL() {
         </div>
       </div>
       {"\n\n\n\n"}
-      <p className="wp-block-paragraph"></p>
       {"\n"}
     </>
   );

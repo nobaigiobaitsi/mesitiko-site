@@ -96,7 +96,7 @@ export function App() {
       >
         {lang === "el" ? "Μετάβαση στο περιεχόμενο" : "Skip to content"}
       </a>
-      <div className="wp-site-blocks">
+      <div className="wp-site-blocks leaf-app-shell">
         <Header lang={lang} pageKey={pageKey} />
         <main
           id="main-content"

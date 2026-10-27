@@ -4,6 +4,7 @@ import { BrowserRouter, HashRouter } from "react-router-dom";
 import { App } from "./App.jsx";
 import "./styles/source.css";
 import "./styles/app.css";
+import "./styles/chrome.css";
 
 const Router =
   import.meta.env.VITE_ROUTER_MODE === "history" ? BrowserRouter : HashRouter;
