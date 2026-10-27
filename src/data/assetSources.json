@@ -1,0 +1,490 @@
+[
+  {
+    "local": "assets/39aecc42-socicon.woff2",
+    "source": "https://leafproperties.net/wp-content/plugins/social-icons-widget-by-wpzoom/assets/font/socicon.woff2?v=4.3.3"
+  },
+  {
+    "local": "assets/ca4bc70a-Catamaran-Variable.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Catamaran-Variable.ttf"
+  },
+  {
+    "local": "assets/b4062cb1-Caudex-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Caudex-Regular.ttf"
+  },
+  {
+    "local": "assets/edd3612d-Cormorant-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Cormorant-Regular.ttf"
+  },
+  {
+    "local": "assets/40b84636-DMSans-Bold.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSans-Bold.ttf"
+  },
+  {
+    "local": "assets/1fca4208-DMSans-BoldItalic.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSans-BoldItalic.ttf"
+  },
+  {
+    "local": "assets/4263cce5-DMSans-Italic.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSans-Italic.ttf"
+  },
+  {
+    "local": "assets/7555d758-DMSans-Medium.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSans-Medium.ttf"
+  },
+  {
+    "local": "assets/2979e8cc-DMSans-MediumItalic.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSans-MediumItalic.ttf"
+  },
+  {
+    "local": "assets/ae59c2cb-DMSans-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSans-Regular.ttf"
+  },
+  {
+    "local": "assets/53acb029-DMSerifDisplay-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/DMSerifDisplay-Regular.ttf"
+  },
+  {
+    "local": "assets/0cb5351e-FiraSans-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/FiraSans-Regular.ttf"
+  },
+  {
+    "local": "assets/3af2a90b-Gruppo-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Gruppo-Regular.ttf"
+  },
+  {
+    "local": "assets/ba2f03aa-IBMPlexMono-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/IBMPlexMono-Regular.ttf"
+  },
+  {
+    "local": "assets/3a9925f3-Junge-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Junge-Regular.ttf"
+  },
+  {
+    "local": "assets/e4aab057-Lato-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Lato-Regular.ttf"
+  },
+  {
+    "local": "assets/a64db7b3-Manrope-Variable.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Manrope-Variable.ttf"
+  },
+  {
+    "local": "assets/ae8395f1-Montserrat-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Montserrat-Regular.ttf"
+  },
+  {
+    "local": "assets/7cd2d462-NunitoSans-Variable.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/NunitoSans-Variable.ttf"
+  },
+  {
+    "local": "assets/e9db49a0-OpenSans-Variable.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/OpenSans-Variable.ttf"
+  },
+  {
+    "local": "assets/396c6c67-PlayfairDisplay-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/PlayfairDisplay-Regular.ttf"
+  },
+  {
+    "local": "assets/a2a471cd-Poppins-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Poppins-Regular.ttf"
+  },
+  {
+    "local": "assets/8553c8db-Prata-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Prata-Regular.ttf"
+  },
+  {
+    "local": "assets/8b31c316-Prompt-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Prompt-Regular.ttf"
+  },
+  {
+    "local": "assets/c84b6b5a-ProstoOne-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/ProstoOne-Regular.ttf"
+  },
+  {
+    "local": "assets/63d21884-Roboto-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Roboto-Regular.ttf"
+  },
+  {
+    "local": "assets/22e450ea-TitilliumWeb-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/TitilliumWeb-Regular.ttf"
+  },
+  {
+    "local": "assets/923d4872-Trirong-Regular.ttf",
+    "source": "https://leafproperties.net/wp-content/themes/hostinger-ai-theme/assets/fonts/Trirong-Regular.ttf"
+  },
+  {
+    "local": "assets/f4e4a2e0-848677c64d0ab5163b2f783cfb6bff04-683x1024.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/848677c64d0ab5163b2f783cfb6bff04-683x1024.jpg"
+  },
+  {
+    "local": "assets/b4d01101-IMG-20260724-WA0001.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0001.jpg"
+  },
+  {
+    "local": "assets/acb45315-IMG-20260724-WA0002.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0002.jpg"
+  },
+  {
+    "local": "assets/9db7f28d-IMG-20260724-WA0003.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0003.jpg"
+  },
+  {
+    "local": "assets/51cfd08e-IMG-20260724-WA0004.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0004.jpg"
+  },
+  {
+    "local": "assets/605f44fb-IMG-20260724-WA0005.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0005.jpg"
+  },
+  {
+    "local": "assets/17194a3d-IMG-20260724-WA0006.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0006.jpg"
+  },
+  {
+    "local": "assets/9440ddbb-IMG-20260724-WA0007.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0007.jpg"
+  },
+  {
+    "local": "assets/0ff291d8-IMG-20260724-WA0008.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0008.jpg"
+  },
+  {
+    "local": "assets/d80c21b5-IMG-20260724-WA0009.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0009.jpg"
+  },
+  {
+    "local": "assets/4772d213-IMG-20260724-WA0010.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0010.jpg"
+  },
+  {
+    "local": "assets/8f2b45d2-IMG-20260724-WA0011.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0011.jpg"
+  },
+  {
+    "local": "assets/1ab87989-IMG-20260724-WA0012.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0012.jpg"
+  },
+  {
+    "local": "assets/91a4a3ca-IMG-20260724-WA0013.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0013.jpg"
+  },
+  {
+    "local": "assets/80ee8aef-IMG-20260724-WA0014.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0014.jpg"
+  },
+  {
+    "local": "assets/75aef6b1-IMG-20260724-WA0015.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0015.jpg"
+  },
+  {
+    "local": "assets/7becd0bf-IMG-20260724-WA0016.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0016.jpg"
+  },
+  {
+    "local": "assets/9bfbc88e-IMG-20260724-WA0017.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0017.jpg"
+  },
+  {
+    "local": "assets/42ab39ab-IMG-20260724-WA0018.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0018.jpg"
+  },
+  {
+    "local": "assets/b724f478-IMG-20260724-WA0019.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/IMG-20260724-WA0019.jpg"
+  },
+  {
+    "local": "assets/c022972c-img1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img1.png"
+  },
+  {
+    "local": "assets/add52a77-img10.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img10.png"
+  },
+  {
+    "local": "assets/aa0451c3-img2.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img2.png"
+  },
+  {
+    "local": "assets/aff94a5c-img3.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img3.png"
+  },
+  {
+    "local": "assets/9ef8b755-img4.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img4.png"
+  },
+  {
+    "local": "assets/a9235141-img5.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img5.png"
+  },
+  {
+    "local": "assets/6016bbc3-img6.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img6.png"
+  },
+  {
+    "local": "assets/9dfb07dd-img7.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img7.png"
+  },
+  {
+    "local": "assets/3558ee96-img8.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img8.png"
+  },
+  {
+    "local": "assets/e4e509e9-img9.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/img9.png"
+  },
+  {
+    "local": "assets/152578d8-leaf-002-01-new-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-01-new-1.png"
+  },
+  {
+    "local": "assets/aec569c6-leaf-002-01-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-01-new.png"
+  },
+  {
+    "local": "assets/5f91ef8b-leaf-002-02-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-02-new.png"
+  },
+  {
+    "local": "assets/362a74dd-leaf-002-03-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-03-new.png"
+  },
+  {
+    "local": "assets/43617c8c-leaf-002-04-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-04-new.png"
+  },
+  {
+    "local": "assets/a16164c5-leaf-002-05-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-05-new.png"
+  },
+  {
+    "local": "assets/93aca8fb-leaf-002-06-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-06-new.png"
+  },
+  {
+    "local": "assets/0f2abcea-leaf-002-07-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-07-new.png"
+  },
+  {
+    "local": "assets/72a1bc53-leaf-002-08-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-08-new.png"
+  },
+  {
+    "local": "assets/c2b85af7-leaf-002-09-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-09-new.png"
+  },
+  {
+    "local": "assets/c1d3009f-leaf-002-10-new.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-002-10-new.png"
+  },
+  {
+    "local": "assets/3e92f119-leaf-gallery-06.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-gallery-06.jpg"
+  },
+  {
+    "local": "assets/74962c5a-leaf-gallery-07.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-gallery-07.jpg"
+  },
+  {
+    "local": "assets/d29fc658-leaf-gallery-08.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-gallery-08.jpg"
+  },
+  {
+    "local": "assets/9c218041-leaf-new-01.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-01.jpg"
+  },
+  {
+    "local": "assets/9657a8dd-leaf-new-02.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-02.jpg"
+  },
+  {
+    "local": "assets/3c547206-leaf-new-03.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-03.jpg"
+  },
+  {
+    "local": "assets/e9040345-leaf-new-04.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-04.jpg"
+  },
+  {
+    "local": "assets/9297759e-leaf-new-05.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-05.jpg"
+  },
+  {
+    "local": "assets/32da7d7d-leaf-new-06.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-06.jpg"
+  },
+  {
+    "local": "assets/6a5f3c4b-leaf-new-07.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-07.jpg"
+  },
+  {
+    "local": "assets/2bddb595-leaf-new-08.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-08.jpg"
+  },
+  {
+    "local": "assets/0601ea8f-leaf-new-photo-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-1.jpg"
+  },
+  {
+    "local": "assets/17866bdc-leaf-new-photo-10.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-10.jpg"
+  },
+  {
+    "local": "assets/dc0bca3b-leaf-new-photo-11.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-11.jpg"
+  },
+  {
+    "local": "assets/57429d11-leaf-new-photo-12.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-12.jpg"
+  },
+  {
+    "local": "assets/655d7a2b-leaf-new-photo-13.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-13.jpg"
+  },
+  {
+    "local": "assets/485aa8c1-leaf-new-photo-2.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-2.jpg"
+  },
+  {
+    "local": "assets/d7a4da3a-leaf-new-photo-3.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-3.jpg"
+  },
+  {
+    "local": "assets/7a1eb2a6-leaf-new-photo-4.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-4.jpg"
+  },
+  {
+    "local": "assets/2e81d608-leaf-new-photo-5.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-5.png"
+  },
+  {
+    "local": "assets/5b35e9db-leaf-new-photo-6.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-6.jpg"
+  },
+  {
+    "local": "assets/800d2c8c-leaf-new-photo-7.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-7.png"
+  },
+  {
+    "local": "assets/41ae8c8c-leaf-new-photo-8.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-8.jpg"
+  },
+  {
+    "local": "assets/e469649b-leaf-new-photo-9.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-new-photo-9.png"
+  },
+  {
+    "local": "assets/de9b0b7f-leaf-photo-09-2.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-photo-09-2.jpg"
+  },
+  {
+    "local": "assets/946de2ad-leaf-photo-10-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-photo-10-1.jpg"
+  },
+  {
+    "local": "assets/a365d6ae-leaf-photo-11-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-photo-11-1.jpg"
+  },
+  {
+    "local": "assets/d3a9b15c-leaf-photo-12.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-photo-12.jpg"
+  },
+  {
+    "local": "assets/9da65a62-leaf-photo-13.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-photo-13.jpg"
+  },
+  {
+    "local": "assets/ec6e36b0-leaf-properties-logo.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/leaf-properties-logo.jpg"
+  },
+  {
+    "local": "assets/3188735a-peristeri-new-01.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-01.png"
+  },
+  {
+    "local": "assets/8aea2363-peristeri-new-02.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-02.png"
+  },
+  {
+    "local": "assets/3aab6cc8-peristeri-new-03.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-03.png"
+  },
+  {
+    "local": "assets/0d4f79e2-peristeri-new-04.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-04.png"
+  },
+  {
+    "local": "assets/e5a22644-peristeri-new-05.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-05.png"
+  },
+  {
+    "local": "assets/c0a5e1c7-peristeri-new-06.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-06.png"
+  },
+  {
+    "local": "assets/12e790a7-peristeri-new-07.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-07.png"
+  },
+  {
+    "local": "assets/fb678148-peristeri-new-08.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-08.png"
+  },
+  {
+    "local": "assets/a2a479db-peristeri-new-09.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/peristeri-new-09.png"
+  },
+  {
+    "local": "assets/2d5daff0-roda-corfu-new-1-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-1-1.jpg"
+  },
+  {
+    "local": "assets/7840e45c-roda-corfu-new-2-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-2-1.jpg"
+  },
+  {
+    "local": "assets/07abfcf3-roda-corfu-new-4-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-4-1.jpg"
+  },
+  {
+    "local": "assets/0ee8d4dc-roda-corfu-new-5-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-5-1.jpg"
+  },
+  {
+    "local": "assets/c0e08e91-roda-corfu-new-6-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-6-1.jpg"
+  },
+  {
+    "local": "assets/77b7cd4e-roda-corfu-new-6.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-6.jpg"
+  },
+  {
+    "local": "assets/452eab2c-roda-corfu-new-7-1.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-7-1.jpg"
+  },
+  {
+    "local": "assets/a2c3b6bc-roda-corfu-new-7.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-7.jpg"
+  },
+  {
+    "local": "assets/c815f056-roda-corfu-new-8.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-8.jpg"
+  },
+  {
+    "local": "assets/19bf005c-roda-corfu-new-9.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/roda-corfu-new-9.jpg"
+  },
+  {
+    "local": "assets/a81b3a10-Gemini_Generated_Image_2er9w42er9w42er9-1024x572.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/08/Gemini_Generated_Image_2er9w42er9w42er9-1024x572.png"
+  },
+  {
+    "local": "assets/9bc4d933-Gemini_Generated_Image_2er9w42er9w42er9-2048x1143.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/08/Gemini_Generated_Image_2er9w42er9w42er9-2048x1143.png"
+  },
+  {
+    "local": "assets/669203d4-living-room-new-909x1024.webp",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/08/living-room-new-909x1024.jpg"
+  },
+  {
+    "local": "assets/LEAF-Golden-Visa.pdf",
+    "source": "https://leafproperties.net/wp-content/uploads/2026/07/LEAF-Golden-Visa.pdf"
+  }
+]
