@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { formatNumber } from "../lib/listings.js";
 
 // Two real range inputs support keyboard, pointer, touch and assistive tools.

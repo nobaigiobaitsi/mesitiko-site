@@ -145,11 +145,11 @@ test("Every bilingual property has a valid route and every bundled image exists"
         data.title &&
           data.description &&
           data.features.length &&
-          data.photos.length,
+          property.photos.length,
       );
-      for (const photo of data.photos)
+      for (const photo of property.photos)
         assert.ok(fs.existsSync(path.join("public", photo.src)), photo.src);
-      assert.match(data.mapUrl, /^https:\/\/www\.google\.com\/maps\?/);
+      assert.match(property.mapUrl, /^https:\/\/www\.google\.com\/maps\?/);
     }
   }
 });

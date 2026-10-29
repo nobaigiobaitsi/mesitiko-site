@@ -1,19 +1,14 @@
-import React, { useEffect, useId, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useId, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { menu } from "../data/site.js";
 import { routes } from "../data/routes.js";
 
-export function Header({ lang, pageKey }) {
+export function Header({ lang, pageKey, activePage = pageKey }) {
   const paired = routes[pageKey] || routes.home;
-  const activePage = pageKey.startsWith("property-") ? "buy" : pageKey;
   const [open, setOpen] = useState(false);
   const navigationId = useId();
   const toggle = useRef(null);
-  const location = useLocation();
   const el = lang === "el";
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
   function handleKeyDown(event) {
     if (event.key === "Escape" && open) {
       setOpen(false);

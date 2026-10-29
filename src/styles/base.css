@@ -1,0 +1,152 @@
+:root {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #182b22;
+  background: #fff;
+  --leaf-green: #1b4332;
+  --leaf-accent: #3a844c;
+  --leaf-soft: #f6f7f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+a {
+  color: var(--leaf-green);
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration: none;
+}
+img,
+svg {
+  vertical-align: middle;
+}
+img {
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.3;
+  overflow-wrap: break-word;
+}
+main {
+  flex: 1;
+  min-width: 0;
+}
+main:focus {
+  outline: none;
+}
+.leaf-app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+:focus-visible {
+  outline: 3px solid #67977f;
+  outline-offset: 4px;
+}
+.leaf-skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  transform: translateY(-180%);
+  z-index: 100001;
+  padding: 10px 16px;
+  background: #fff;
+  color: var(--leaf-green);
+  border: 2px solid;
+  border-radius: 6px;
+}
+.leaf-skip-link:focus {
+  transform: translateY(0);
+}
+.leaf-honeypot,
+.leaf-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.leaf-container {
+  width: min(1100px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: 48px 64px;
+}
+.leaf-page-title {
+  text-align: center;
+  font-size: clamp(27px, 4vw, 36px);
+  color: var(--leaf-green);
+  margin: 0 0 40px;
+}
+.leaf-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 11px 24px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--leaf-green);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+.leaf-button:hover {
+  background: var(--leaf-accent);
+}
+.leaf-not-found {
+  text-align: center;
+  padding: 80px 24px;
+}
+@media (max-width: 620px) {
+  .leaf-container {
+    width: calc(100% - 40px);
+    padding-block: 32px 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

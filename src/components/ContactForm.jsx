@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import { useId, useState } from "react";
 import { emailDraft, sendRequest } from "../lib/contact.js";
 import { site } from "../data/site.js";
 
@@ -84,18 +84,18 @@ export function ContactForm({
       maxLength: name === "message" ? 2500 : 200,
     };
     return (
-      <div className={appointment ? "appointment-field" : "ff-el-group"}>
-        <div className="ff-el-input--label">
+      <div className="leaf-field">
+        <div className="leaf-field-label">
           <label htmlFor={props.id}>
             {t[name]}
             {required && <span aria-hidden="true"> *</span>}
           </label>
         </div>
-        <div className="ff-el-input--content">
+        <div className="leaf-field-control">
           {rows ? (
-            <textarea {...props} rows={rows} className="ff-el-form-control" />
+            <textarea {...props} rows={rows} className="leaf-input" />
           ) : (
-            <input {...props} type={type} className="ff-el-form-control" />
+            <input {...props} type={type} className="leaf-input" />
           )}
         </div>
       </div>
@@ -104,14 +104,10 @@ export function ContactForm({
 
   return (
     <div
-      className={`leaf-form-wrap ${appointment ? "" : "fluentform ff-default ffs_default_wrap"}`}
+      className={`leaf-form-wrap ${appointment ? "leaf-form-wrap--appointment" : ""}`}
     >
       <form
-        className={
-          appointment
-            ? "lpd-form"
-            : "frm-fluent-form ff-el-form-top ffs_default"
-        }
+        className="leaf-contact-form"
         onSubmit={submit}
         aria-label={
           appointment ? t.submit : el ? "Φόρμα Επικοινωνίας" : "Contact Form"
@@ -146,17 +142,9 @@ export function ContactForm({
           />
         </div>
         {!endpoint && <p className="leaf-form-note">{t.note}</p>}
-        <div
-          className={
-            appointment ? "" : "ff-el-group ff-text-left ff_submit_btn_wrapper"
-          }
-        >
+        <div className="leaf-form-actions">
           <button
-            className={
-              appointment
-                ? "lpd-btn"
-                : "ff-btn ff-btn-submit ff-btn-md ff_btn_style"
-            }
+            className="leaf-form-submit"
             type="submit"
             disabled={state === "sending"}
           >

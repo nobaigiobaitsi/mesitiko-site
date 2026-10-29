@@ -1,14 +1,11 @@
-import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMemo, useState } from "react";
 import { properties } from "../data/properties.js";
-import { routes } from "../data/routes.js";
-import { asset } from "../lib/assets.js";
 import {
-  defaultFilters,
-  formatPrice,
-  propertyMeta,
+  initialFilters,
+  listingLimits,
   selectProperties,
 } from "../lib/listings.js";
+import { PropertyCard } from "../components/PropertyCard.jsx";
 import { RangeFilter } from "../components/RangeFilter.jsx";
 
 const areas = [
@@ -33,7 +30,8 @@ const types = [
 ];
 
 export function Listings({ lang, transaction = "buy" }) {
-  const [filters, setFilters] = useState({ ...defaultFilters });
+  const [filters, setFilters] = useState(() => initialFilters(transaction));
+  const limits = listingLimits(transaction);
   const [expanded, setExpanded] = useState(false);
   const [sort, setSort] = useState("");
   const el = lang === "el";
@@ -93,8 +91,8 @@ export function Listings({ lang, transaction = "buy" }) {
         <RangeFilter
           label={el ? "Τιμή (€)" : "Price (€)"}
           unit="€"
-          ceiling={800000}
-          step={5000}
+          ceiling={limits.price}
+          step={limits.step}
           lang={lang}
           values={[filters.minPrice, filters.maxPrice]}
           onChange={([minPrice, maxPrice]) =>
@@ -170,7 +168,7 @@ export function Listings({ lang, transaction = "buy" }) {
                 type="button"
                 className="lpl-reset-btn"
                 onClick={() => {
-                  setFilters({ ...defaultFilters });
+                  setFilters(initialFilters(transaction));
                   setSort("");
                 }}
               >
@@ -209,51 +207,12 @@ export function Listings({ lang, transaction = "buy" }) {
             : "properties found"}
       </div>
       <div className="lpl-grid">
-        {result.map((property) => {
-          const localized = property.locales[lang];
-          return (
-            <article className="lpl-card" key={property.id}>
-              <div className="lpl-photo">
-                <img
-                  src={asset(property.cover)}
-                  alt={localized.cardTitle}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="lpl-card-body">
-                <div className="lpl-card-top">
-                  <span className="lpl-price">
-                    {formatPrice(property.price, lang)}
-                  </span>
-                  <span className="lpl-badge">
-                    {property.status === "sold"
-                      ? el
-                        ? "ΠΩΛΗΘΗΚΕ"
-                        : "SOLD"
-                      : localized.statusText}
-                  </span>
-                </div>
-                <h3>{localized.cardTitle}</h3>
-                <p className="lpl-address">{localized.cardAddress}</p>
-                <div className="lpl-meta">
-                  {propertyMeta(property, lang).map((meta, index) => (
-                    <span key={index}>{meta}</span>
-                  ))}
-                </div>
-                <Link
-                  className="lpl-cta"
-                  to={routes[`property-${property.id}`][lang]}
-                >
-                  {el ? "ΠΛΗΡΗΣ ΠΑΡΟΥΣΙΑΣΗ →" : "FULL PRESENTATION →"}
-                </Link>
-              </div>
-            </article>
-          );
-        })}
+        {result.map((property) => (
+          <PropertyCard key={property.id} property={property} lang={lang} />
+        ))}
       </div>
       {!result.length && (
-        <div className="lpl-empty" style={{ display: "block" }}>
+        <div className="lpl-empty">
           {transaction === "rent"
             ? el
               ? "Δεν υπάρχουν διαθέσιμα ακίνητα προς ενοικίαση αυτή τη στιγμή."

@@ -24,9 +24,19 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - run: npm run lint
       - run: npm test
-      - run: npm run build
-      - uses: actions/configure-pages@v5
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build static HTML for this domain and repository path
+        run: npm run build
+        env:
+          VITE_SITE_URL: ${{ steps.pages.outputs.origin }}
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          VITE_CONTACT_ENDPOINT: ${{ vars.VITE_CONTACT_ENDPOINT }}
+          VITE_NEWSLETTER_ENDPOINT: ${{ vars.VITE_NEWSLETTER_ENDPOINT }}
+      - run: npm run test:build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

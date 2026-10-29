@@ -1,0 +1,341 @@
+/* Shared page templates. All selectors belong to a named React page. */
+.leaf-home-hero {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 16 / 9;
+  min-height: 460px;
+  padding: 24px 40px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.leaf-home-image,
+.leaf-home-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.leaf-home-image {
+  object-fit: cover;
+}
+.leaf-home-overlay {
+  background: #172c226b;
+}
+.leaf-home-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid #ffffff4d;
+  padding-block: 18px;
+}
+.leaf-home-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  background: #fff;
+  color: #213127;
+  border-radius: 16px;
+  padding: 18px 28px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 15px;
+  box-shadow: 0 10px 24px #0d141a2e;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.leaf-home-actions a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px #0d141a42;
+}
+.leaf-home-hero h1 {
+  width: min(100%, 900px);
+  margin: auto auto;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: clamp(16px, 1.7vw, 24px);
+  letter-spacing: 3px;
+  font-weight: 400;
+  border-bottom: 1px solid #ffffff6b;
+  padding-block: 20px;
+}
+.leaf-sell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+.leaf-sell-intro {
+  text-align: center;
+}
+.leaf-sell-intro h1 {
+  color: var(--leaf-green);
+  font-size: clamp(28px, 3vw, 40px);
+}
+.leaf-sell-intro p {
+  font-size: 18px;
+  line-height: 1.9;
+  text-align: left;
+}
+.leaf-sell-form-panel {
+  padding: 32px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+}
+.leaf-form-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid #e3e8e1;
+}
+.leaf-form-card h2 {
+  margin: 0 0 24px;
+  font-size: 21px;
+  color: var(--leaf-green);
+}
+.leaf-services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.leaf-services-grid article {
+  min-width: 0;
+}
+.leaf-services-grid h2 {
+  text-align: center;
+  font-size: 19px;
+  color: var(--leaf-green);
+}
+.leaf-services-grid p {
+  line-height: 1.8;
+  text-align: justify;
+}
+.leaf-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.leaf-contact-info {
+  text-align: center;
+  padding-block: 24px;
+}
+.leaf-contact-info > img {
+  width: min(100%, 360px);
+  height: auto;
+  margin-bottom: 24px;
+}
+.leaf-contact-info > h2 {
+  color: var(--leaf-green);
+  font-size: 26px;
+}
+.leaf-contact-info > a {
+  display: block;
+  margin-block: 12px;
+  overflow-wrap: anywhere;
+}
+.leaf-contact-socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  padding: 16px 0;
+}
+.leaf-contact-socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #c6d3c8;
+  border-radius: 50%;
+}
+.leaf-contact-socials svg {
+  width: 20px;
+  height: 20px;
+}
+.leaf-news-card {
+  max-width: 900px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #21382d;
+  color: #fff;
+}
+.leaf-news-card > img {
+  width: 100%;
+  height: 100%;
+  max-height: 480px;
+  object-fit: cover;
+}
+.leaf-news-card > div {
+  padding: 40px;
+  align-self: center;
+}
+.leaf-news-card h2 {
+  font-size: 26px;
+}
+.leaf-news-card p {
+  color: #e2e8dc;
+  line-height: 1.9;
+}
+.leaf-news-card .leaf-button {
+  margin-top: 12px;
+  background: #e1ead8;
+  color: #1a3027;
+}
+.leaf-workflow {
+  max-width: 960px;
+}
+.leaf-article-back {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.leaf-eyebrow {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #64816d;
+  font-weight: 600;
+}
+.leaf-workflow > .leaf-eyebrow {
+  margin-top: 36px;
+}
+.leaf-workflow > h1 {
+  color: var(--leaf-green);
+  font-size: clamp(28px, 4vw, 40px);
+}
+.leaf-workflow > h2 {
+  font-size: 24px;
+}
+.leaf-workflow p {
+  line-height: 1.9;
+}
+.leaf-workflow-steps {
+  list-style: none;
+  padding: 0;
+  margin-block: 40px;
+}
+.leaf-workflow-steps > li {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 18px;
+  padding-bottom: 28px;
+}
+.leaf-step-number {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  background: var(--leaf-green);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 600;
+}
+.leaf-workflow-steps section {
+  border: 1px solid #e0e6df;
+  border-radius: 12px;
+  padding: 24px;
+  background: #fafbf9;
+}
+.leaf-workflow-steps h2 {
+  margin-top: 8px;
+  color: var(--leaf-green);
+  font-size: 22px;
+}
+.leaf-workflow-steps h4 {
+  margin-bottom: 6px;
+  font-size: 17px;
+}
+.leaf-workflow-steps blockquote {
+  border-left: 3px solid #7b9a73;
+  padding-left: 18px;
+  margin: 24px 0;
+  font-style: italic;
+  color: #4f6657;
+}
+.leaf-workflow-closing {
+  text-align: center;
+  border-top: 2px solid #c8d7bf;
+  padding-top: 24px;
+}
+.leaf-privacy {
+  max-width: 900px;
+}
+.leaf-privacy h1 {
+  color: var(--leaf-green);
+  font-size: 34px;
+  margin-top: 0;
+}
+.leaf-privacy h2 {
+  font-size: 23px;
+  color: var(--leaf-green);
+  margin-top: 32px;
+}
+.leaf-privacy p,
+.leaf-privacy li {
+  line-height: 1.85;
+}
+@media (max-width: 800px) {
+  .leaf-home-hero {
+    aspect-ratio: auto;
+  }
+  .leaf-sell,
+  .leaf-contact-grid,
+  .leaf-services-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .leaf-sell-form-panel {
+    padding: 24px;
+  }
+  .leaf-home-hero {
+    padding-inline: 24px;
+  }
+}
+@media (max-width: 620px) {
+  .leaf-home-hero {
+    min-height: 480px;
+  }
+  .leaf-home-actions {
+    gap: 10px;
+  }
+  .leaf-home-actions a {
+    padding: 14px 16px;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+  .leaf-home-actions svg {
+    width: 18px;
+  }
+  .leaf-news-card {
+    grid-template-columns: 1fr;
+  }
+  .leaf-news-card > img {
+    max-height: 260px;
+  }
+  .leaf-news-card > div {
+    padding: 24px;
+  }
+  .leaf-form-card {
+    padding: 20px;
+  }
+  .leaf-workflow-steps > li {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .leaf-workflow-steps section {
+    padding: 20px;
+  }
+}

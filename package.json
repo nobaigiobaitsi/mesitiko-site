@@ -1,17 +1,20 @@
 {
-  "name": "leaf-properties-react",
+  "name": "mesitiko-site",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.13.0"
   },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "node scripts/build.mjs",
     "preview": "vite preview --host 0.0.0.0",
+    "lint": "eslint . --max-warnings 0",
     "test": "node --test",
-    "check": "npm test && npm run build"
+    "test:build": "node scripts/check-build.mjs",
+    "check": "npm run lint && npm test && npm run build && npm run test:build",
+    "format": "prettier --write src scripts tests *.js *.html *.md .env.example .github/workflows/*.yml --ignore-unknown"
   },
   "dependencies": {
     "react": "19.3.1",
@@ -19,6 +22,13 @@
     "react-router-dom": "7.18.4"
   },
   "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@vitejs/plugin-react": "6.1.2",
+    "eslint": "10.13.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
     "vite": "8.3.5"
   }
 }

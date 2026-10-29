@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { site, menu } from "../data/site.js";
 import { routes } from "../data/routes.js";

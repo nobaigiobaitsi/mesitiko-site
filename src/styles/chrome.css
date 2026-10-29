@@ -1,22 +1,12 @@
-/* Shared React layout. The original theme assumed a fixed 75px Hostinger menu. */
-body.hostinger-ai-builder-gutenberg,
-body.hostinger-ai-builder-elementor {
-  padding-top: 0;
-}
-.leaf-app-shell {
-  padding-block: 0;
-}
-.leaf-app-shell > .leaf-header,
-.leaf-app-shell > main,
-.leaf-app-shell > .leaf-footer {
-  margin-block: 0;
-}
-body.home .leaf-app-shell .entry-content {
-  margin-block: 0;
-}
-body.home .leaf-app-shell .entry-content > .leaf-home-hero {
-  border: 0 !important;
-  margin-block: 0 !important;
+.logo-leaf-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 6px;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M2 10 C2 4 8 1 18 1 C18 11 11 18 2 18 C2 15 2 12 2 10 Z' fill='%232d6a4f'/%3E%3Cpath d='M3 17 C7 13 10 9 17 2' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 /* Header */
@@ -275,7 +265,7 @@ body.home .leaf-app-shell .entry-content > .leaf-home-hero {
 }
 .leaf-footer h3.leaf-footer-heading {
   margin: 3px 0 23px;
-  color: #b7cba8 !important;
+  color: #b7cba8;
   font-family: inherit;
   font-size: 11px;
   font-weight: 650;
