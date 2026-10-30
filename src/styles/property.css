@@ -468,3 +468,31 @@ body:has(.leaf-lightbox[open]) {
     font-size: 20px;
   }
 }
+
+/* Match the catalogue's quieter visual language. */
+.lpd-wrap .lpd-reference {
+  font-size: 12px;
+  color: #66766b;
+  letter-spacing: 0.5px;
+  margin: 12px 0;
+}
+.lpd-wrap .lpd-header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+.lpd-wrap .lpd-badge {
+  background: #eff3ee;
+  color: #375640;
+  border-radius: 2px;
+}
+.lpd-wrap .lpd-fact,
+.lpd-wrap .lpd-agent-card,
+.lpd-wrap .lpd-btn {
+  border-radius: 3px;
+  box-shadow: none;
+}
+.lpd-wrap .lpd-agent-photo {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+}

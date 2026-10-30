@@ -8,14 +8,18 @@ export function PropertyCard({ property, lang }) {
   const localized = property.locales[lang];
   return (
     <article className="lpl-card">
-      <div className="lpl-photo">
+      <Link
+        className="lpl-photo"
+        to={routes[`property-${property.id}`][lang]}
+        aria-label={localized.cardTitle + " — " + localized.cardAddress}
+      >
         <img
           src={asset(property.cover)}
           alt={localized.cardTitle}
           loading="lazy"
           decoding="async"
         />
-      </div>
+      </Link>
       <div className="lpl-card-body">
         <div className="lpl-card-top">
           <span className="lpl-price">
@@ -26,15 +30,18 @@ export function PropertyCard({ property, lang }) {
           </span>
           <span className="lpl-badge">{propertyStatus(property, lang)}</span>
         </div>
+        <p className="lpl-reference">
+          {el ? "Κωδικός" : "Reference"}: {property.reference || property.id}
+        </p>
         <h2>{localized.cardTitle}</h2>
         <p className="lpl-address">{localized.cardAddress}</p>
         <div className="lpl-meta">
           {propertyMeta(property, lang).map((meta, index) => (
-            <span key={index}>{meta}</span>
+            <span key={index}>{meta.replace(/^[^\p{L}\p{N}]+/u, "")}</span>
           ))}
         </div>
         <Link className="lpl-cta" to={routes[`property-${property.id}`][lang]}>
-          {el ? "ΠΛΗΡΗΣ ΠΑΡΟΥΣΙΑΣΗ →" : "FULL PRESENTATION →"}
+          {el ? "Δείτε το ακίνητο →" : "View property →"}
         </Link>
       </div>
     </article>

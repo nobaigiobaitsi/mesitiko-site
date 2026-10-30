@@ -73,15 +73,23 @@ export function Listings({ lang, transaction = "buy" }) {
   return (
     <div className="lpl-wrap">
       <div className="lpl-hero">
+        <p className="lpl-eyebrow">
+          LEAF PROPERTIES / {el ? "ΑΚΙΝΗΤΑ" : "PROPERTIES"}
+        </p>
         <h1>
           {transaction === "buy"
             ? el
-              ? "Αγορά"
-              : "Buy"
+              ? "Ακίνητα προς πώληση"
+              : "Properties for sale"
             : el
-              ? "Ενοικίαση"
-              : "Rent"}
+              ? "Ακίνητα προς ενοικίαση"
+              : "Properties to rent"}
         </h1>
+        <p>
+          {el
+            ? "Αναζητήστε ακίνητα με βάση την περιοχή, την τιμή και τις ανάγκες σας."
+            : "Explore properties by location, price and your requirements."}
+        </p>
       </div>
       <div className="lpl-quickarea">
         <label htmlFor="lpl-area-quick">{el ? "Περιοχή" : "Area"}</label>
@@ -182,19 +190,22 @@ export function Listings({ lang, transaction = "buy" }) {
         <span className="lpl-sort-label">
           {el ? "ΤΑΞΙΝΟΜΗΣΗ:" : "SORT BY:"}
         </span>
-        {["price-asc", "price-desc", "ppsqm-asc", "ppsqm-desc"].map(
-          (key, index) => (
-            <button
-              type="button"
-              key={key}
-              className={`lpl-sort-btn ${sort === key ? "active" : ""}`}
-              aria-pressed={sort === key}
-              onClick={() => setSort(key)}
-            >
-              {sortLabels[index]}
-            </button>
-          ),
-        )}
+        <select
+          aria-label={el ? "Ταξινόμηση ακινήτων" : "Sort properties"}
+          value={sort}
+          onChange={(event) => setSort(event.target.value)}
+        >
+          <option value="">
+            {el ? "Προτεινόμενη σειρά" : "Default order"}
+          </option>
+          {["price-asc", "price-desc", "ppsqm-asc", "ppsqm-desc"].map(
+            (key, index) => (
+              <option key={key} value={key}>
+                {sortLabels[index]}
+              </option>
+            ),
+          )}
+        </select>
       </div>
       <div className="lpl-count" aria-live="polite">
         {result.length}{" "}

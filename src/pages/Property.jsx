@@ -39,18 +39,18 @@ export function Property({ property, lang }) {
           <div className="lpd-side-col lpd-side-col--under-photos">
             <div className="lpd-agent-card">
               <div className="lpd-agent-photo" aria-hidden="true">
-                👤
+                LEAF
               </div>
               <h3>{site.name}</h3>
               <p className="lpd-agent-role">
                 {el ? "Σύμβουλος Ακινήτων" : "Real Estate Consultant"}
               </p>
               <a className="lpd-btn" href={site.phoneHref}>
-                📞 {site.phone}
+                {site.phone}
               </a>
               <a
                 className="lpd-btn lpd-btn-outline"
-                href={`mailto:${site.email}?subject=${encodeURIComponent(`Property #${property.id}`)}`}
+                href={`mailto:${site.email}?subject=${encodeURIComponent(`Property ${property.reference || property.id}`)}`}
               >
                 ✉ {el ? "Αποστολή Email" : "Send Email"}
               </a>
@@ -58,7 +58,7 @@ export function Property({ property, lang }) {
               <ContactForm
                 lang={lang}
                 kind="appointment"
-                propertyId={property.id}
+                propertyId={property.reference || property.id}
                 propertyTitle={data.title}
               />
             </div>
@@ -70,6 +70,10 @@ export function Property({ property, lang }) {
               <span className="lpd-badge">
                 {propertyStatus(property, lang)}
               </span>
+              <p className="lpd-reference">
+                {el ? "Κωδικός ακινήτου" : "Property reference"}:{" "}
+                {property.reference || property.id}
+              </p>
               <h1>{data.title}</h1>
               <p className="lpd-address">{data.address}</p>
             </div>
@@ -91,7 +95,6 @@ export function Property({ property, lang }) {
               <div className="lpd-facts">
                 {propertyFacts(property, lang).map((fact) => (
                   <div className="lpd-fact" key={fact.key}>
-                    <span>{fact.icon}</span>
                     <strong>{fact.value}</strong>
                     <small>{fact.label}</small>
                   </div>
@@ -104,7 +107,7 @@ export function Property({ property, lang }) {
               </h2>
               <ul className="lpd-features">
                 {data.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
+                  <li key={feature}>{feature.replace(/^✔\s*/, "")}</li>
                 ))}
               </ul>
               <h2>{el ? "Τοποθεσία" : "Location"}</h2>
