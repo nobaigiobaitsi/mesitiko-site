@@ -39,3 +39,28 @@ export async function sendRequest(payload, endpoint) {
     clearTimeout(timeout);
   }
 }
+
+export async function sendWeb3FormsRequest(payload, endpoint) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+      signal: controller.signal,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || result.success !== true) {
+      throw new Error(result.message || "Η αποστολή απέτυχε.");
+    }
+  } finally {
+    clearTimeout(timeout);
+  }
+}

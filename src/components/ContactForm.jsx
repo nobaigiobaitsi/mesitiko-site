@@ -1,5 +1,5 @@
 import { useId, useState } from "react";
-import { emailDraft, sendRequest } from "../lib/contact.js";
+import { emailDraft, sendWeb3FormsRequest as sendRequest } from "../lib/contact.js";
 import { site } from "../data/site.js";
 
 export function ContactForm({
@@ -64,7 +64,25 @@ export function ContactForm({
     }
     setState("sending");
     try {
-      await sendRequest(payload, endpoint);
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
+
+if (!accessKey) {
+  throw new Error("Missing Web3Forms access key");
+}
+
+await sendRequest(
+  {
+    ...payload,
+    access_key: accessKey,
+    from_name: "LEAF Properties",
+    subject: propertyId
+      ? `LEAF — Ενδιαφέρον για ακίνητο #${propertyId}`
+      : payload.subject?.trim() || "LEAF — Νέο μήνυμα επικοινωνίας",
+    ...(propertyTitle ? { propertyTitle } : {}),
+    page_url: window.location.href,
+  },
+  endpoint,
+);
       setState("sent");
     } catch {
       setState("error");
