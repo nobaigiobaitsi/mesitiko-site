@@ -88,13 +88,7 @@ try {
     path.join(dist, "robots.txt"),
     `User-agent: *\nAllow: /\nSitemap: ${absoluteUrl("/sitemap.xml", origin, base)}\n`,
   );
-  await writeFile(path.join(dist, ".nojekyll"), "");
   // Cloudflare serves 404.html via assets.not_found_handling in wrangler.jsonc.
-  // Its _redirects format does not support a 404 status code.
-  await writeFile(
-    path.join(dist, ".htaccess"),
-    `DirectoryIndex index.html\nOptions -MultiViews\nErrorDocument 404 ${withBase("/404.html", base)}\n`,
-  );
   console.log(
     `\nPrerendered ${routes.length} bilingual pages, 404, aliases, sitemap and robots.txt (base: ${base}).`,
   );
