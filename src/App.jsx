@@ -26,7 +26,7 @@ const pages = {
   privacy: Privacy,
 };
 const seoConfig = {
-  origin: import.meta.env.VITE_SITE_URL || "https://leafproperties.net",
+  origin: import.meta.env.VITE_SITE_URL || "https://leafproperties.gr",
   base: import.meta.env.BASE_URL,
 };
 

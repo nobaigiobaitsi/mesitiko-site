@@ -11,7 +11,7 @@ const env = {
   ...process.env,
 };
 const base = normalizeBasePath(env.VITE_BASE_PATH || "/");
-const origin = env.VITE_SITE_URL?.trim() || "https://leafproperties.net";
+const origin = env.VITE_SITE_URL?.trim() || "https://leafproperties.gr";
 const parsedOrigin = new URL(origin);
 if (
   !["https:", "http:"].includes(parsedOrigin.protocol) ||
