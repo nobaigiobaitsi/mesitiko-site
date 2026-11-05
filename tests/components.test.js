@@ -7,7 +7,7 @@ import { createServer } from "vite";
 import { properties } from "../src/data/properties.js";
 import { identifyRoute } from "../src/lib/routing.js";
 
-let server, Property, PropertyCard, Header;
+let server, Property, PropertyCard, Header, Footer;
 before(async () => {
   // Vite transpiles JSX for these server-side component regression checks;
   // middlewareMode does not start an HTTP listener.
@@ -20,6 +20,7 @@ before(async () => {
     "/src/components/PropertyCard.jsx",
   ));
   ({ Header } = await server.ssrLoadModule("/src/components/Header.jsx"));
+  ({ Footer } = await server.ssrLoadModule("/src/components/Footer.jsx"));
 });
 after(async () => {
   await server?.close();
@@ -81,4 +82,40 @@ test("Single-photo cards omit gallery controls and plot facts use land measureme
   assert.doesNotMatch(card, /<dt>Bedrooms/);
   assert.match(card, /5,060 m²/);
   assert.match(card, /<dt>[^<]+<\/dt><dd>65 m<\/dd>/);
+});
+
+test("The newsletter renders natively in both languages with required, unchecked consent", () => {
+  for (const lang of ["el", "en"]) {
+    const footer = render(Footer, { lang });
+    assert.doesNotMatch(footer, /<iframe/);
+    assert.match(
+      footer,
+      /<form[^>]+action="https:\/\/8d2b83f8\.sibforms\.com\/serve\//,
+    );
+    const email = footer.match(/<input\b[^>]*name="EMAIL"[^>]*>/)[0];
+    const consent = footer.match(/<input\b[^>]*name="OPT_IN"[^>]*>/)[0];
+    assert.match(email, /type="email"/);
+    assert.match(email, /required=""/);
+    assert.match(consent, /type="checkbox"/);
+    assert.match(consent, /required=""/);
+    assert.match(consent, /value="1"/);
+    assert.doesNotMatch(consent, /checked/);
+    assert.match(footer, /name="email_address_check"/);
+    assert.match(footer, /<details class="leaf-newsletter-details">/);
+    assert.ok(
+      footer.includes(
+        lang === "el"
+          ? "Πώς χρησιμοποιούμε το email σας"
+          : "How we use your email",
+      ),
+    );
+    assert.ok(
+      footer.includes(
+        lang === "el"
+          ? 'href="/privacy-policy/"'
+          : 'href="/en/privacy-policy-2/"',
+      ),
+    );
+    assert.match(footer, /aria-live="polite" aria-atomic="true"/);
+  }
 });

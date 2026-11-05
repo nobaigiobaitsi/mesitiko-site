@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { site, menu } from "../data/site.js";
 import { routes } from "../data/routes.js";
 import { Icon } from "./Icon.jsx";
+import { Newsletter } from "./Newsletter.jsx";
 
 function ContactIcon({ phone = false }) {
   return (
@@ -25,22 +26,6 @@ function ContactIcon({ phone = false }) {
         </>
       )}
     </svg>
-  );
-}
-function Newsletter({ lang }) {
-  return (
-    <iframe
-      src="https://8d2b83f8.sibforms.com/serve/MUIFAC1L1CibkOxejr0elemTptIWjCoOhNr5j_218BKdFO1s6hynIpbQISw01poQps-iuEiShLf9afov1-pmMAqonluj25RtKozJlopujoIu5gdZZsLJnl5usIqg0lbj3GFqJaeqgQaK72tjSVcsdOCSJIC2IkyNr9ZmcHbM2GI8MBwDkEjOsi6TYH4t52gIJNImou3j66Zpt_j7tg=="
-      title={
-        lang === "el"
-          ? "Εγγραφή στο newsletter"
-          : "Newsletter signup"
-      }
-      width="100%"
-      height="800"
-      loading="lazy"
-      style={{ border: 0, display: "block" }}
-    />
   );
 }
 export function Footer({ lang }) {

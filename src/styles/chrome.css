@@ -221,8 +221,8 @@
 }
 .leaf-footer-grid {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr 1.25fr 1.25fr;
-  gap: 38px;
+  grid-template-columns: 0.9fr 1fr 1.15fr 1.4fr;
+  gap: 32px;
   padding-bottom: 48px;
 }
 .leaf-footer-grid > div {
@@ -365,8 +365,9 @@
 }
 .leaf-newsletter {
   margin: 0;
+  min-width: 0;
 }
-.leaf-newsletter > label {
+.leaf-newsletter > label:not(.leaf-newsletter-consent) {
   display: block;
   margin: 0 0 7px;
   color: #c5d3bd;
@@ -378,19 +379,20 @@
   display: flex;
   align-items: center;
   min-width: 0;
-  border: 1px solid #a8c09747;
+  border: 1px solid #a8c09760;
   border-radius: 9px;
   background: #ffffff06;
   transition: border-color 0.2s;
 }
 .leaf-newsletter-field:focus-within {
-  border-color: #c2d7ae;
+  border-color: #d7c18a;
+  box-shadow: 0 0 0 3px #d7c18a14;
 }
 .leaf-newsletter-field input {
   flex: 1;
   min-width: 0;
   width: 100%;
-  height: 48px;
+  height: 50px;
   padding: 12px 8px 12px 13px;
   margin: 0;
   border: 0;
@@ -398,7 +400,7 @@
   background: transparent;
   color: #f2f5ec;
   font: inherit;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
 }
 .leaf-newsletter-field input::placeholder {
@@ -409,42 +411,123 @@
   outline-offset: -4px;
 }
 .leaf-newsletter .leaf-newsletter-submit {
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   flex: 0 0 auto;
-  width: 38px;
-  height: 38px;
+  min-height: 42px;
   margin: 4px;
-  padding: 0;
+  padding: 9px 12px;
   border: 0;
   border-radius: 6px;
-  background: #c8d7b8;
-  color: #1a3527;
+  background: #d7c18a;
+  color: #1a3027;
   font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
   cursor: pointer;
   transition: background 0.2s;
 }
-.leaf-newsletter .leaf-newsletter-submit:hover {
-  background: #e0ebd4;
+.leaf-newsletter .leaf-newsletter-submit:hover:not(:disabled) {
+  background: #e6d4a7;
 }
 .leaf-newsletter .leaf-newsletter-submit:disabled {
   cursor: wait;
   opacity: 0.6;
 }
+.leaf-newsletter > .leaf-newsletter-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 14px 0 0;
+  color: #d0dbca;
+  font-size: 12px;
+  line-height: 1.7;
+  cursor: pointer;
+}
+.leaf-newsletter-consent input {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 3px 0 0;
+  accent-color: #d7c18a;
+  cursor: pointer;
+}
+.leaf-newsletter a,
+.leaf-newsletter-security button {
+  color: #e2cd97;
+  text-decoration: underline;
+  text-decoration-color: #e2cd9759;
+  text-underline-offset: 3px;
+}
+.leaf-newsletter a:hover {
+  color: #f4e5c1;
+}
 .leaf-newsletter-note {
-  margin: 9px 0 0;
-  color: #afc1a6;
+  margin: 8px 0 0;
+  color: #b6c6af;
   font-size: 11px;
   line-height: 1.7;
+}
+.leaf-newsletter-captcha {
+  margin-top: 10px;
+}
+.leaf-newsletter-captcha:empty {
+  display: none;
+}
+.leaf-newsletter-security {
+  margin-top: 6px;
+  color: #b6c6af;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.leaf-newsletter-security p {
+  margin: 0;
+}
+.leaf-newsletter-security button {
+  min-height: 32px;
+  padding: 3px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 12px;
 }
 .leaf-newsletter-status:empty {
   display: none;
 }
 .leaf-newsletter-status p {
+  padding: 10px 12px;
+  border: 1px solid #bdcfa940;
+  border-radius: 6px;
+  background: #bdcfa90a;
   color: #e1ebd9;
   margin: 10px 0 0;
   font-size: 12px;
   line-height: 1.7;
+}
+.leaf-newsletter-status[data-status="error"] p {
+  border-color: #e5ab9359;
+  background: #e5ab930a;
+  color: #f2c6b4;
+}
+.leaf-newsletter-details {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #c1d6b323;
+  color: #b6c6af;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.leaf-newsletter-details summary {
+  width: fit-content;
+  padding-block: 3px;
+  color: #c8d6c1;
+  cursor: pointer;
+}
+.leaf-newsletter-details p {
+  margin: 8px 0 0;
 }
 .leaf-footer-bottom {
   display: flex;
@@ -671,8 +754,8 @@
     font-size: 16px;
   }
   .leaf-newsletter .leaf-newsletter-submit {
-    width: 44px;
-    height: 44px;
+    min-height: 44px;
+    padding-inline: 14px;
   }
   .leaf-footer-social-area {
     flex-direction: column;
