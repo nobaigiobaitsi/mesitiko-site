@@ -1,27 +1,8 @@
-import { useId, useState } from "react";
 import { Link } from "react-router-dom";
 import { site, menu } from "../data/site.js";
 import { routes } from "../data/routes.js";
 import { Icon } from "./Icon.jsx";
-import { emailDraft, sendRequest } from "../lib/contact.js";
 
-function Arrow() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M5 12h14m-6-6 6 6-6 6" />
-    </svg>
-  );
-}
 function ContactIcon({ phone = false }) {
   return (
     <svg
@@ -47,89 +28,19 @@ function ContactIcon({ phone = false }) {
   );
 }
 function Newsletter({ lang }) {
-  const id = useId();
-  const [state, setState] = useState("idle");
-  const el = lang === "el";
-  const endpoint = import.meta.env.VITE_NEWSLETTER_ENDPOINT?.trim();
-  async function submit(event) {
-    event.preventDefault();
-    const payload = {
-      email: new FormData(event.currentTarget).get("email"),
-      kind: "newsletter",
-      language: lang,
-    };
-    if (!endpoint) {
-      setState("draft");
-      window.location.href = emailDraft({
-        ...payload,
-        message: "I would like to subscribe to the LEAF newsletter.",
-      });
-      return;
-    }
-    setState("sending");
-    try {
-      await sendRequest(payload, endpoint);
-      setState("sent");
-    } catch {
-      setState("error");
-    }
-  }
   return (
-    <form className="leaf-newsletter" onSubmit={submit} aria-label="Newsletter">
-      <label htmlFor={id}>{el ? "Το email σας" : "Your email"}</label>
-      <div className="leaf-newsletter-field">
-        <input
-          type="email"
-          id={id}
-          name="email"
-          autoComplete="email"
-          placeholder="you@example.com"
-          required
-          aria-describedby={`${id}-note`}
-        />
-        <button
-          type="submit"
-          className="leaf-newsletter-submit"
-          disabled={state === "sending"}
-          aria-label={
-            el
-              ? "Αίτημα εγγραφής στο newsletter"
-              : "Request newsletter subscription"
-          }
-          title={el ? "Εγγραφή" : "Subscribe"}
-        >
-          {state === "sending" ? "…" : <Arrow />}
-        </button>
-      </div>
-      <p className="leaf-newsletter-note" id={`${id}-note`}>
-        {endpoint
-          ? el
-            ? "Νέα ακίνητα και ενημερώσεις από τη LEAF."
-            : "New properties and updates from LEAF."
-          : el
-            ? "Στείλτε αίτημα εγγραφής από την εφαρμογή email σας."
-            : "Request a subscription through your email app."}
-      </p>
-      <div className="leaf-newsletter-status" aria-live="polite">
-        {state === "draft" && (
-          <p>
-            {el
-              ? "Στείλτε το προσχέδιο στην εφαρμογή email σας για να ζητήσετε εγγραφή."
-              : "Send the draft in your email app to request your subscription."}
-          </p>
-        )}
-        {state === "sent" && (
-          <p>{el ? "Το αίτημα υποβλήθηκε." : "Request submitted."}</p>
-        )}
-        {state === "error" && (
-          <p role="alert">
-            {el
-              ? "Το αίτημα δεν στάλθηκε. Δοκιμάστε ξανά."
-              : "Request failed. Please try again."}
-          </p>
-        )}
-      </div>
-    </form>
+    <iframe
+      src="https://8d2b83f8.sibforms.com/serve/MUIFAC1L1CibkOxejr0elemTptIWjCoOhNr5j_218BKdFO1s6hynIpbQISw01poQps-iuEiShLf9afov1-pmMAqonluj25RtKozJlopujoIu5gdZZsLJnl5usIqg0lbj3GFqJaeqgQaK72tjSVcsdOCSJIC2IkyNr9ZmcHbM2GI8MBwDkEjOsi6TYH4t52gIJNImou3j66Zpt_j7tg=="
+      title={
+        lang === "el"
+          ? "Εγγραφή στο newsletter"
+          : "Newsletter signup"
+      }
+      width="100%"
+      height="800"
+      loading="lazy"
+      style={{ border: 0, display: "block" }}
+    />
   );
 }
 export function Footer({ lang }) {
