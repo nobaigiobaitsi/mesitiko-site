@@ -14,6 +14,7 @@ import { propertySection } from "../lib/routing.js";
 
 export function Property({ property, lang }) {
   const data = property.locales[lang];
+  const features = (data.features || []).filter((feature) => feature.trim());
   const el = lang === "el";
   const mapUrl = propertyMapUrl(property.mapUrl, lang);
   const location = data.location || data.address;
@@ -104,15 +105,19 @@ export function Property({ property, lang }) {
                 ))}
               </div>
               <h2>{el ? "Περιγραφή" : "Description"}</h2>
-              <p>{data.description}</p>
-              <h2>
-                {el ? "Χαρακτηριστικά & Παροχές" : "Features & Amenities"}
-              </h2>
-              <ul className="lpd-features">
-                {data.features.map((feature) => (
-                  <li key={feature}>{feature.replace(/^✔\s*/, "")}</li>
-                ))}
-              </ul>
+              <p className="lpd-description">{data.description}</p>
+              {features.length > 0 && (
+                <>
+                  <h2>
+                    {el ? "Χαρακτηριστικά & Παροχές" : "Features & Amenities"}
+                  </h2>
+                  <ul className="lpd-features">
+                    {features.map((feature, index) => (
+                      <li key={index}>{feature.replace(/^✔\s*/, "")}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
               {(location || mapUrl) && (
                 <>
                   <h2>{el ? "Τοποθεσία" : "Location"}</h2>
@@ -126,7 +131,9 @@ export function Property({ property, lang }) {
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                       />
-                      {data.mapNote && <p className="lpd-map-note">{data.mapNote}</p>}
+                      {data.mapNote && (
+                        <p className="lpd-map-note">{data.mapNote}</p>
+                      )}
                     </>
                   )}
                 </>

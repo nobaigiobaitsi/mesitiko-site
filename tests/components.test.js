@@ -121,10 +121,41 @@ test("The newsletter renders natively in both languages with required, unchecked
 });
 
 test("Missing or invalid property maps never embed the site itself", () => {
-  for (const mapUrl of [undefined, "", "&hl=el", "/", "https://example.com/maps"]) {
+  for (const mapUrl of [
+    undefined,
+    "",
+    "&hl=el",
+    "/",
+    "https://example.com/maps",
+  ]) {
     const property = { ...properties[0], mapUrl };
     const detail = render(Property, { property, lang: "el" });
     assert.doesNotMatch(detail, /<iframe/);
-    assert.ok(detail.includes(property.locales.el.location || property.locales.el.address));
+    assert.ok(
+      detail.includes(
+        property.locales.el.location || property.locales.el.address,
+      ),
+    );
+  }
+});
+
+test("Public descriptions retain spacing safely and empty amenities are hidden", () => {
+  for (const lang of ["el", "en"]) {
+    const property = structuredClone(properties[0]);
+    property.locales[lang].description =
+      "First  line\n\nSecond paragraph\n<script>alert(1)</script>";
+    property.locales[lang].features = ["Parking", "Balcony"];
+    const detail = render(Property, { property, lang });
+    assert.match(
+      detail,
+      /class="lpd-description">First {2}line\n\nSecond paragraph\n&lt;script&gt;/,
+    );
+    assert.match(detail, /<li>Parking<\/li><li>Balcony<\/li>/);
+    property.locales[lang].features = [];
+    const empty = render(Property, { property, lang });
+    assert.doesNotMatch(
+      empty,
+      /lpd-features|Features &amp; Amenities|Χαρακτηριστικά &amp; Παροχές/,
+    );
   }
 });

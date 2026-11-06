@@ -496,3 +496,8 @@ body:has(.leaf-lightbox[open]) {
   font-size: 18px;
   letter-spacing: 2px;
 }
+
+.lpd-wrap .lpd-description {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
