@@ -119,3 +119,12 @@ test("The newsletter renders natively in both languages with required, unchecked
     assert.match(footer, /aria-live="polite" aria-atomic="true"/);
   }
 });
+
+test("Missing or invalid property maps never embed the site itself", () => {
+  for (const mapUrl of [undefined, "", "&hl=el", "/", "https://example.com/maps"]) {
+    const property = { ...properties[0], mapUrl };
+    const detail = render(Property, { property, lang: "el" });
+    assert.doesNotMatch(detail, /<iframe/);
+    assert.ok(detail.includes(property.locales.el.location || property.locales.el.address));
+  }
+});

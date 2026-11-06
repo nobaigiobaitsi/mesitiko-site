@@ -1,3 +1,4 @@
+import { propertyMapUrl } from "../lib/maps.js";
 import { Link } from "react-router-dom";
 import { ContactForm } from "../components/ContactForm.jsx";
 import { Gallery } from "../components/Gallery.jsx";
@@ -14,6 +15,8 @@ import { propertySection } from "../lib/routing.js";
 export function Property({ property, lang }) {
   const data = property.locales[lang];
   const el = lang === "el";
+  const mapUrl = propertyMapUrl(property.mapUrl, lang);
+  const location = data.location || data.address;
   const section = propertySection(property, lang);
   const photos = property.photos.map((photo) => ({
     src: photo.src,
@@ -110,16 +113,24 @@ export function Property({ property, lang }) {
                   <li key={feature}>{feature.replace(/^✔\s*/, "")}</li>
                 ))}
               </ul>
-              <h2>{el ? "Τοποθεσία" : "Location"}</h2>
-              <p>{data.location}</p>
-              <iframe
-                className="lpd-map-frame"
-                title={`${el ? "Χάρτης" : "Map"} - ${data.title}`}
-                src={`${property.mapUrl}&hl=${lang}`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <p className="lpd-map-note">{data.mapNote}</p>
+              {(location || mapUrl) && (
+                <>
+                  <h2>{el ? "Τοποθεσία" : "Location"}</h2>
+                  {location && <p>{location}</p>}
+                  {mapUrl && (
+                    <>
+                      <iframe
+                        className="lpd-map-frame"
+                        title={`${el ? "Χάρτης" : "Map"} - ${data.title}`}
+                        src={mapUrl}
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      />
+                      {data.mapNote && <p className="lpd-map-note">{data.mapNote}</p>}
+                    </>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>
