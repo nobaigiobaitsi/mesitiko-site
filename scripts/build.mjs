@@ -1,3 +1,4 @@
+import { prepareCrmCatalog } from "./crm-catalog.mjs";
 import { build, loadEnv } from "vite";
 import { mkdir, readFile, writeFile, rm } from "node:fs/promises";
 import path from "node:path";
@@ -27,8 +28,10 @@ const config = { origin: parsedOrigin.origin, base };
 const dist = path.resolve("dist");
 const serverOutput = path.resolve(".ssg");
 
+const crmCatalog = await prepareCrmCatalog(env);
 try {
   await build();
+  if (crmCatalog.enabled) await rm(path.join(dist, "properties"), { recursive: true, force: true });
   const template = await readFile(path.join(dist, "index.html"), "utf8");
   await build({
     publicDir: false,
@@ -88,10 +91,17 @@ try {
     path.join(dist, "robots.txt"),
     `User-agent: *\nAllow: /\nSitemap: ${absoluteUrl("/sitemap.xml", origin, base)}\n`,
   );
+  await writeFile(path.join(dist, "publication-status.json"), JSON.stringify({
+    source: crmCatalog.enabled ? "crm" : "legacy",
+    revision: crmCatalog.enabled ? crmCatalog.revision : null,
+    count: crmCatalog.enabled ? crmCatalog.count : null,
+    built_at: new Date().toISOString(),
+  }));
   // Cloudflare serves 404.html via assets.not_found_handling in wrangler.jsonc.
   console.log(
     `\nPrerendered ${routes.length} bilingual pages, 404, aliases, sitemap and robots.txt (base: ${base}).`,
   );
 } finally {
+  await crmCatalog.cleanup();
   await rm(serverOutput, { recursive: true, force: true });
 }
