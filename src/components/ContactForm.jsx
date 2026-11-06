@@ -1,5 +1,8 @@
 import { useId, useState } from "react";
-import { emailDraft, sendWeb3FormsRequest as sendRequest } from "../lib/contact.js";
+import {
+  emailDraft,
+  sendWeb3FormsRequest as sendRequest,
+} from "../lib/contact.js";
 import { site } from "../data/site.js";
 
 export function ContactForm({
@@ -13,7 +16,10 @@ export function ContactForm({
   const [draft, setDraft] = useState("");
   const el = lang === "el";
   const appointment = kind === "appointment";
-  const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT?.trim();
+  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
+  const endpoint =
+    import.meta.env.VITE_CONTACT_ENDPOINT?.trim() ||
+    (accessKey ? "https://api.web3forms.com/submit" : "");
   const t = el
     ? {
         name: "Όνομα",
@@ -46,6 +52,7 @@ export function ContactForm({
 
   async function submit(event) {
     event.preventDefault();
+    if (state === "sending") return;
     const values = Object.fromEntries(new FormData(event.currentTarget));
     if (values.website) return;
     delete values.website;
@@ -54,6 +61,8 @@ export function ContactForm({
       kind,
       language: lang,
       ...(propertyId ? { propertyId } : {}),
+      ...(propertyTitle ? { propertyTitle } : {}),
+      page_url: window.location.href,
     };
     if (!endpoint) {
       const href = emailDraft(payload);
@@ -64,25 +73,20 @@ export function ContactForm({
     }
     setState("sending");
     try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim();
-
-if (!accessKey) {
-  throw new Error("Missing Web3Forms access key");
-}
-
-await sendRequest(
-  {
-    ...payload,
-    access_key: accessKey,
-    from_name: "LEAF Properties",
-    subject: propertyId
-      ? `LEAF — Ενδιαφέρον για ακίνητο #${propertyId}`
-      : payload.subject?.trim() || "LEAF — Νέο μήνυμα επικοινωνίας",
-    ...(propertyTitle ? { propertyTitle } : {}),
-    page_url: window.location.href,
-  },
-  endpoint,
-);
+      if (!accessKey) throw new Error("Missing Web3Forms access key");
+      await sendRequest(
+        {
+          ...payload,
+          access_key: accessKey,
+          from_name: "LEAF Properties",
+          subject: propertyId
+            ? `LEAF — Ενδιαφέρον για ακίνητο #${propertyId}`
+            : kind === "sell"
+              ? "LEAF — Ανάθεση ακινήτου"
+              : `LEAF — ${payload.subject?.trim() || "Νέο μήνυμα επικοινωνίας"}`,
+        },
+        endpoint,
+      );
       setState("sent");
     } catch {
       setState("error");
@@ -131,15 +135,14 @@ await sendRequest(
           appointment ? t.submit : el ? "Φόρμα Επικοινωνίας" : "Contact Form"
         }
       >
-        {field("name", { required: appointment, autoComplete: "given-name" })}
+        {field("name", { required: true, autoComplete: "given-name" })}
         {kind === "contact" &&
           field("lastName", { autoComplete: "family-name" })}
-        {!appointment &&
-          field("email", {
-            type: "email",
-            required: true,
-            autoComplete: "email",
-          })}
+        {field("email", {
+          type: "email",
+          required: true,
+          autoComplete: "email",
+        })}
         {(kind === "contact" || appointment) &&
           field("phone", { type: "tel", required: true, autoComplete: "tel" })}
         {kind === "contact" && field("subject")}

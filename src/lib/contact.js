@@ -10,6 +10,8 @@ export function emailDraft(payload) {
         : "LEAF - Contact request");
   const body = [
     payload.propertyId ? `Property: #${payload.propertyId}` : "",
+    payload.propertyTitle ? `Title: ${payload.propertyTitle}` : "",
+    payload.page_url ? `Page: ${payload.page_url}` : "",
     `Name: ${[payload.name, payload.lastName].filter(Boolean).join(" ")}`,
     payload.email ? `Email: ${payload.email}` : "",
     payload.phone ? `Phone: ${payload.phone}` : "",
