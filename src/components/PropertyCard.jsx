@@ -1,11 +1,15 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { routes } from "../data/routes.js";
 import { asset } from "../lib/assets.js";
 import { formatPrice, propertyFacts, propertyStatus } from "../lib/listings.js";
 
 export function PropertyCard({ property, lang }) {
   const el = lang === "el";
+  const location = useLocation();
+  const returnState = {
+    listingReturn: `${location.pathname}${location.search}`,
+  };
   const localized = property.locales[lang];
   const photos = [
     { src: property.cover, alt: { [lang]: localized.cardTitle } },
@@ -97,13 +101,21 @@ export function PropertyCard({ property, lang }) {
               <small>{el ? " / μήνα" : " / month"}</small>
             )}
           </span>
-          <span className="lpl-badge">{propertyStatus(property, lang)}</span>
+          <span
+            className="lpl-badge"
+            data-closed={["sold", "rented"].includes(property.status)}
+          >
+            {propertyStatus(property, lang)}
+          </span>
         </div>
         <p className="lpl-reference">
           {el ? "Κωδικός" : "Reference"}: {property.reference || property.id}
         </p>
         <h2>
-          <Link to={routes[`property-${property.id}`][lang]}>
+          <Link
+            to={routes[`property-${property.id}`][lang]}
+            state={returnState}
+          >
             {localized.cardTitle}
           </Link>
         </h2>
@@ -116,7 +128,11 @@ export function PropertyCard({ property, lang }) {
             </div>
           ))}
         </dl>
-        <Link className="lpl-cta" to={routes[`property-${property.id}`][lang]}>
+        <Link
+          className="lpl-cta"
+          to={routes[`property-${property.id}`][lang]}
+          state={returnState}
+        >
           {el ? "Δείτε το ακίνητο →" : "View property →"}
         </Link>
       </div>

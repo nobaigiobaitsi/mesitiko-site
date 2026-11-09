@@ -7,7 +7,7 @@ import { createServer } from "vite";
 import { properties } from "../src/data/properties.js";
 import { identifyRoute } from "../src/lib/routing.js";
 
-let server, Property, PropertyCard, Header, Footer;
+let server, Property, PropertyCard, Header, Footer, Listings;
 before(async () => {
   // Vite transpiles JSX for these server-side component regression checks;
   // middlewareMode does not start an HTTP listener.
@@ -15,6 +15,7 @@ before(async () => {
     server: { middlewareMode: true },
     appType: "custom",
   });
+  ({ Listings } = await server.ssrLoadModule("/src/pages/Listings.jsx"));
   ({ Property } = await server.ssrLoadModule("/src/pages/Property.jsx"));
   ({ PropertyCard } = await server.ssrLoadModule(
     "/src/components/PropertyCard.jsx",
@@ -156,6 +157,64 @@ test("Public descriptions retain spacing safely and empty amenities are hidden",
     assert.doesNotMatch(
       empty,
       /lpd-features|Features &amp; Amenities|Χαρακτηριστικά &amp; Παροχές/,
+    );
+  }
+});
+
+test("Property back link restores the listing search and rejects unrelated return paths", () => {
+  const property = properties[0];
+  for (const [listingReturn, expected] of [
+    [
+      "/en/buy-2/?area=ekali&maxPrice=600000",
+      "/en/buy-2/?area=ekali&amp;maxPrice=600000",
+    ],
+    ["https://example.com", "/en/buy-2/"],
+  ]) {
+    const html = renderToStaticMarkup(
+      createElement(
+        StaticRouter,
+        {
+          location: {
+            pathname: property.locales.en.path,
+            state: { listingReturn },
+          },
+        },
+        createElement(Property, { property, lang: "en" }),
+      ),
+    );
+    assert.ok(html.includes(`class="lpd-back" href="${expected}"`));
+  }
+});
+
+test("Encoded Greek listing URLs preserve filters in the detail back link", () => {
+  const property = properties[0];
+  const listingReturn = "/%CE%B1%CE%B3%CE%BF%CF%81%CE%AC/?area=ekali";
+  const html = renderToStaticMarkup(
+    createElement(
+      StaticRouter,
+      {
+        location: {
+          pathname: property.locales.el.path,
+          state: { listingReturn },
+        },
+      },
+      createElement(Property, { property, lang: "el" }),
+    ),
+  );
+  assert.ok(html.includes(`class="lpd-back" href="${listingReturn}"`));
+});
+
+test("Catalogue prerenders usable bilingual search, listings and rental empty state", () => {
+  for (const lang of ["el", "en"]) {
+    const buy = render(Listings, { lang, transaction: "buy" });
+    assert.ok(buy.includes(lang === "el" ? "ακίνητα" : "properties"));
+    assert.ok(buy.includes('type="number"'));
+    assert.ok(buy.includes(properties[0].locales[lang].path));
+    const rent = render(Listings, { lang, transaction: "rent" });
+    assert.ok(
+      rent.includes(
+        lang === "el" ? "Δεν βρέθηκε ακίνητο" : "No properties match",
+      ),
     );
   }
 });

@@ -1,5 +1,5 @@
 import { propertyMapUrl } from "../lib/maps.js";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ContactForm } from "../components/ContactForm.jsx";
 import { Gallery } from "../components/Gallery.jsx";
 import { site } from "../data/site.js";
@@ -10,7 +10,7 @@ import {
   propertyFacts,
   propertyStatus,
 } from "../lib/listings.js";
-import { propertySection } from "../lib/routing.js";
+import { propertySection, normalizePath } from "../lib/routing.js";
 
 export function Property({ property, lang }) {
   const data = property.locales[lang];
@@ -19,6 +19,13 @@ export function Property({ property, lang }) {
   const mapUrl = propertyMapUrl(property.mapUrl, lang);
   const location = data.location || data.address;
   const section = propertySection(property, lang);
+  const { state } = useLocation();
+  const previous = state?.listingReturn;
+  const backPath =
+    typeof previous === "string" &&
+    normalizePath(previous.split("?")[0]) === section.path
+      ? previous
+      : section.path;
   const photos = property.photos.map((photo) => ({
     src: photo.src,
     alt: photo.alt[lang],
@@ -32,7 +39,7 @@ export function Property({ property, lang }) {
         <Link to={routes.home[lang]}>{el ? "Αρχική" : "Home"}</Link> /{" "}
         <Link to={section.path}>{section.label}</Link> / {data.title}
       </nav>
-      <Link className="lpd-back" to={section.path}>
+      <Link className="lpd-back" to={backPath}>
         {el ? "← Πίσω στα Ακίνητα" : "← Back to Properties"}
       </Link>
       <div className="lpd-layout">
