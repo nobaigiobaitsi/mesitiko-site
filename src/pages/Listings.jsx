@@ -376,7 +376,7 @@ function Catalog({ lang, transaction, search, onChange }) {
               }
             >
               <option value="">
-                {t("Προτεινόμενη σειρά", "Default order")}
+                {t("Νεότερα πρώτα", "Newest first")}
               </option>
               <option value="price-asc">
                 {t("Τιμή: χαμηλή → υψηλή", "Price: low to high")}
