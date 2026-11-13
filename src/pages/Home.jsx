@@ -52,7 +52,25 @@ export function Home({ lang }) {
             </Link>
           ))}
       </nav>
-      <h1 id="home-heading">{t.heading}</h1>
+      <div className="leaf-home-intro">
+        <h1 id="home-heading">{t.heading}</h1>
+        <section
+          className="leaf-home-about"
+          aria-labelledby="home-about-heading"
+        >
+          <div className="leaf-home-about-inner">
+            <header className="leaf-home-about-heading">
+              <p className="leaf-home-about-label">{t.about.label}</p>
+              <h2 id="home-about-heading">{t.about.title}</h2>
+            </header>
+            <div className="leaf-home-about-copy">
+              {t.about.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
     </section>
   );
 }

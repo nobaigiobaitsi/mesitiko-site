@@ -1,6 +1,15 @@
 // Translated editorial content. Page layout lives in src/pages/.
 export default {
   home: {
+    about: {
+      label: "About us",
+      title: "Your next step starts with a personal conversation.",
+      paragraphs: [
+        "At Leaf Properties, we believe that every property has its own story and every search reflects different needs. That’s why we start by listening to you: what you’re looking for, what matters to you and what you want to achieve.",
+        "We market properties for sale and rent and help people find options that meet their needs. We combine personal communication with modern digital tools, focusing on thoughtful presentation and clear information.",
+        "Whether you want to sell or rent out your property or are looking for your next space, we’re here to discuss your options and help you move forward with confidence.",
+      ],
+    },
     heading: "LEAF Properties & Partners | Athens",
     navLabel: "Find your property",
   },

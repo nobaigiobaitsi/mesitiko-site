@@ -23,7 +23,12 @@
   object-fit: cover;
 }
 .leaf-home-overlay {
-  background: #172c226b;
+  background: linear-gradient(
+    180deg,
+    #172c2259 0%,
+    #172c22bd 35%,
+    #172c22e6 100%
+  );
 }
 .leaf-home-actions {
   display: flex;
@@ -55,9 +60,16 @@
   transform: translateY(-3px);
   box-shadow: 0 16px 32px #0d141a42;
 }
+.leaf-home-intro {
+  width: min(100%, 900px);
+  /* Anchor to the navigation, not the translated content height. */
+  margin: 0 auto;
+  padding-top: clamp(56px, 12vw, 168px);
+  padding-bottom: clamp(32px, 4vw, 64px);
+}
 .leaf-home-hero h1 {
   width: min(100%, 900px);
-  margin: auto auto;
+  margin: 0 auto;
   text-align: center;
   text-transform: uppercase;
   font-size: clamp(16px, 1.7vw, 24px);
@@ -66,6 +78,56 @@
   border-bottom: 1px solid #ffffff6b;
   padding-block: 20px;
 }
+/* Introduction shares the hero image and grows naturally on small screens. */
+.leaf-home-about {
+  margin-top: clamp(32px, 4vw, 56px);
+  color: #fff;
+}
+.leaf-home-about-inner {
+  display: grid;
+  gap: 24px;
+}
+.leaf-home-about-heading {
+  text-align: center;
+}
+.leaf-home-about-label {
+  margin: 0 0 12px;
+  color: #e3ebe5;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.leaf-home-about-heading h2 {
+  min-height: 2.8em;
+  max-width: 700px;
+  margin: 0 auto;
+  color: #fff;
+  font-size: clamp(22px, 2.3vw, 30px);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.leaf-home-about-copy {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+}
+.leaf-home-about-copy p {
+  margin: 0 0 18px;
+  color: #fff;
+  line-height: 1.85;
+}
+.leaf-home-about-copy p:last-child {
+  margin-bottom: 0;
+}
+
+/* Reserve the same text area on desktop without clipping longer content. */
+@media (min-width: 900px) {
+  .leaf-home-about-copy {
+    min-height: 350px;
+  }
+}
+
 .leaf-sell {
   display: grid;
   grid-template-columns: 1fr 1fr;
