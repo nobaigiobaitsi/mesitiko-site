@@ -1,6 +1,7 @@
 // Translated editorial content. Page layout lives in src/pages/.
 export default {
   home: {
+    tagline: { lead: "Every space,", accent: "a new beginning." },
     about: {
       label: "About us",
       title: "Your next step starts with a personal conversation.",

@@ -30,47 +30,49 @@ function HomeIcon({ type }) {
 export function Home({ lang }) {
   const t = content[lang].home;
   return (
-    <section className="leaf-home-hero" aria-labelledby="home-heading">
-      <img
-        className="leaf-home-image"
-        src={asset(
-          "assets/9bc4d933-Gemini_Generated_Image_2er9w42er9w42er9-2048x1143.webp",
-        )}
-        alt=""
-        width="2048"
-        height="1143"
-        fetchPriority="high"
-      />
-      <div className="leaf-home-overlay" />
-      <nav className="leaf-home-actions" aria-label={t.navLabel}>
-        {menu
-          .filter((item) => ["buy", "rent", "sell"].includes(item.key))
-          .map((item) => (
-            <Link key={item.key} to={routes[item.key][lang]}>
-              <HomeIcon type={item.key} />
-              {item[lang]}
-            </Link>
-          ))}
-      </nav>
-      <div className="leaf-home-intro">
-        <h1 id="home-heading">{t.heading}</h1>
-        <section
-          className="leaf-home-about"
-          aria-labelledby="home-about-heading"
-        >
-          <div className="leaf-home-about-inner">
-            <header className="leaf-home-about-heading">
-              <p className="leaf-home-about-label">{t.about.label}</p>
-              <h2 id="home-about-heading">{t.about.title}</h2>
-            </header>
-            <div className="leaf-home-about-copy">
-              {t.about.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+    <>
+      <section className="leaf-home-hero" aria-labelledby="home-heading">
+        <img
+          className="leaf-home-image"
+          src={asset(
+            "assets/9bc4d933-Gemini_Generated_Image_2er9w42er9w42er9-2048x1143.webp",
+          )}
+          alt=""
+          width="2048"
+          height="1143"
+          fetchPriority="high"
+        />
+        <div className="leaf-home-overlay" />
+        <nav className="leaf-home-actions" aria-label={t.navLabel}>
+          {menu
+            .filter((item) => ["buy", "rent", "sell"].includes(item.key))
+            .map((item) => (
+              <Link key={item.key} to={routes[item.key][lang]}>
+                <HomeIcon type={item.key} />
+                {item[lang]}
+              </Link>
+            ))}
+        </nav>
+        <div className="leaf-home-intro">
+          <h1 id="home-heading">{t.heading}</h1>
+          <p className="leaf-home-tagline">
+            {t.tagline.lead} <em>{t.tagline.accent}</em>
+          </p>
+        </div>
+      </section>
+      <section className="leaf-home-about" aria-labelledby="home-about-heading">
+        <div className="leaf-home-about-inner">
+          <header className="leaf-home-about-heading">
+            <p className="leaf-home-about-label">{t.about.label}</p>
+            <h2 id="home-about-heading">{t.about.title}</h2>
+          </header>
+          <div className="leaf-home-about-copy">
+            {t.about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
-        </section>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

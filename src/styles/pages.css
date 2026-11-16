@@ -78,53 +78,94 @@
   border-bottom: 1px solid #ffffff6b;
   padding-block: 20px;
 }
-/* Introduction shares the hero image and grows naturally on small screens. */
+/* Keep the short promise on the image; give the full introduction its own space. */
+.leaf-home-tagline {
+  position: relative;
+  margin: 30px auto 0;
+  max-width: 850px;
+  min-height: 2.8em;
+  padding-bottom: 28px;
+  color: #fffdf7;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3.7vw, 52px);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  text-shadow: 0 2px 18px #10271dcc;
+}
+.leaf-home-tagline em {
+  display: inline-block;
+  color: #e5d3a6;
+  font-weight: 400;
+}
+.leaf-home-tagline::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e5d3a6, transparent);
+}
+@media (max-width: 480px) {
+  .leaf-home-tagline {
+    font-size: clamp(26px, 7.4vw, 35px);
+  }
+}
 .leaf-home-about {
-  margin-top: clamp(32px, 4vw, 56px);
-  color: #fff;
+  padding: clamp(48px, 6vw, 88px) 40px;
+  background: var(--leaf-soft);
+  border-top: 1px solid #dce4dd;
 }
 .leaf-home-about-inner {
+  width: min(100%, 1120px);
+  margin-inline: auto;
   display: grid;
-  gap: 24px;
-}
-.leaf-home-about-heading {
-  text-align: center;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
 }
 .leaf-home-about-label {
-  margin: 0 0 12px;
-  color: #e3ebe5;
+  margin: 0 0 18px;
+  color: var(--leaf-accent);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 .leaf-home-about-heading h2 {
-  min-height: 2.8em;
-  max-width: 700px;
-  margin: 0 auto;
-  color: #fff;
-  font-size: clamp(22px, 2.3vw, 30px);
+  margin: 0;
+  color: var(--leaf-green);
+  font-size: clamp(25px, 2.5vw, 34px);
   font-weight: 500;
   line-height: 1.4;
+  text-wrap: balance;
 }
-.leaf-home-about-copy {
-  width: 100%;
-  max-width: 800px;
-  margin-inline: auto;
+.leaf-home-about-heading::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 2px;
+  margin-top: 28px;
+  background: #a18b59;
 }
 .leaf-home-about-copy p {
   margin: 0 0 18px;
-  color: #fff;
+  color: #354b40;
   line-height: 1.85;
 }
 .leaf-home-about-copy p:last-child {
   margin-bottom: 0;
 }
-
-/* Reserve the same text area on desktop without clipping longer content. */
-@media (min-width: 900px) {
-  .leaf-home-about-copy {
-    min-height: 350px;
+@media (max-width: 800px) {
+  .leaf-home-about {
+    padding-inline: 24px;
+  }
+  .leaf-home-about-inner {
+    grid-template-columns: 1fr;
   }
 }
 

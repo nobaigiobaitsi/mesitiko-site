@@ -1,6 +1,7 @@
 // Translated editorial content. Page layout lives in src/pages/.
 export default {
   home: {
+    tagline: { lead: "Κάθε χώρος,", accent: "μια νέα αρχή." },
     about: {
       label: "Σχετικά με εμάς",
       title: "Το επόμενο βήμα σας ξεκινά με μια προσωπική συζήτηση.",
