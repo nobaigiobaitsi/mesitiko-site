@@ -18,7 +18,7 @@ export function Sell({ lang }) {
       <div
         className="leaf-sell-form-panel"
         style={{
-          backgroundImage: `url("${asset("assets/f4e4a2e0-848677c64d0ab5163b2f783cfb6bff04-683x1024.webp")}")`,
+          backgroundImage: `url("${asset("assets/sell_image.webp")}")`,
         }}
       >
         <div className="leaf-form-card">

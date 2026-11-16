@@ -35,7 +35,7 @@ export function Home({ lang }) {
         <img
           className="leaf-home-image"
           src={asset(
-            "assets/9bc4d933-Gemini_Generated_Image_2er9w42er9w42er9-2048x1143.webp",
+            "assets/hero_image.webp",
           )}
           alt=""
           width="2048"

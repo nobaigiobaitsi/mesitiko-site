@@ -10,7 +10,7 @@ export function News({ lang }) {
       <h1 className="leaf-page-title">{t.title}</h1>
       <article className="leaf-news-card">
         <img
-          src={asset("assets/669203d4-living-room-new-909x1024.webp")}
+          src={asset("assets/living_room_image.webp")}
           alt=""
           width="909"
           height="1024"

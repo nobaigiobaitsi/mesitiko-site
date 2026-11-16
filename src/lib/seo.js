@@ -54,7 +54,7 @@ export function getSeo(route, { origin, base = "/" }) {
         }))
       : [],
     image: absoluteUrl(
-      property?.cover || "assets/ec6e36b0-leaf-properties-logo.webp",
+      property?.cover || "assets/main_logo.webp",
       origin,
       base,
     ),

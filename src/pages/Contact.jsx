@@ -12,7 +12,7 @@ export function Contact({ lang }) {
       <div className="leaf-contact-grid">
         <div className="leaf-contact-info">
           <img
-            src={asset("assets/ec6e36b0-leaf-properties-logo.webp")}
+            src={asset("assets/main_logo.webp")}
             alt="LEAF Properties & Partners"
             width="440"
             height="180"
