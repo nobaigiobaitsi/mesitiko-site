@@ -31,7 +31,8 @@ const serverOutput = path.resolve(".ssg");
 const crmCatalog = await prepareCrmCatalog(env);
 try {
   await build();
-  if (crmCatalog.enabled) await rm(path.join(dist, "properties"), { recursive: true, force: true });
+  // Also discard unused legacy media if it still exists in an older checkout.
+  await rm(path.join(dist, "properties"), { recursive: true, force: true });
   const template = await readFile(path.join(dist, "index.html"), "utf8");
   await build({
     publicDir: false,
@@ -92,9 +93,9 @@ try {
     `User-agent: *\nAllow: /\nSitemap: ${absoluteUrl("/sitemap.xml", origin, base)}\n`,
   );
   await writeFile(path.join(dist, "publication-status.json"), JSON.stringify({
-    source: crmCatalog.enabled ? "crm" : "legacy",
+    source: crmCatalog.enabled ? "crm" : "disabled",
     revision: crmCatalog.enabled ? crmCatalog.revision : null,
-    count: crmCatalog.enabled ? crmCatalog.count : null,
+    count: crmCatalog.enabled ? crmCatalog.count : 0,
     built_at: new Date().toISOString(),
   }));
   // Cloudflare serves 404.html via assets.not_found_handling in wrangler.jsonc.

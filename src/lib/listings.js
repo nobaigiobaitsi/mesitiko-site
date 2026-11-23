@@ -77,10 +77,12 @@ export function propertyMeta(property, lang) {
     ];
   }
   return [
-    `🛏 ${formatNumber(property.rooms, lang)} ${el ? "Δωμ." : property.rooms === 1 ? "Bedroom" : "Bedrooms"}`,
-    `🛁 ${formatNumber(property.bathrooms, lang)} ${el ? (property.bathrooms === 1 ? "Μπάνιο" : "Μπάνια") : property.bathrooms === 1 ? "Bathroom" : "Bathrooms"}`,
+    property.rooms != null &&
+      `🛏 ${formatNumber(property.rooms, lang)} ${el ? "Δωμ." : property.rooms === 1 ? "Bedroom" : "Bedrooms"}`,
+    property.bathrooms != null &&
+      `🛁 ${formatNumber(property.bathrooms, lang)} ${el ? (property.bathrooms === 1 ? "Μπάνιο" : "Μπάνια") : property.bathrooms === 1 ? "Bathroom" : "Bathrooms"}`,
     area,
-  ];
+  ].filter(Boolean);
 }
 
 export function propertyFacts(property, lang) {
@@ -93,21 +95,20 @@ export function propertyFacts(property, lang) {
       label: el ? "Συνολική Επιφάνεια" : "Total Area",
     },
   ];
-  if (property.type !== "oikopedo")
-    facts.push(
-      {
-        key: "rooms",
-        icon: "🛏",
-        value: formatNumber(property.rooms, lang),
-        label: el ? "Υπνοδωμάτια" : "Bedrooms",
-      },
-      {
-        key: "bathrooms",
-        icon: "🛁",
-        value: `${formatNumber(property.bathrooms, lang)}${property.wc ? ` (+${property.wc} WC)` : ""}`,
-        label: el ? "Μπάνια" : "Bathrooms",
-      },
-    );
+  if (property.type !== "oikopedo" && property.rooms != null)
+    facts.push({
+      key: "rooms",
+      icon: "🛏",
+      value: formatNumber(property.rooms, lang),
+      label: el ? "Υπνοδωμάτια" : "Bedrooms",
+    });
+  if (property.type !== "oikopedo" && property.bathrooms != null)
+    facts.push({
+      key: "bathrooms",
+      icon: "🛁",
+      value: `${formatNumber(property.bathrooms, lang)}${property.wc ? ` (+${property.wc} WC)` : ""}`,
+      label: el ? "Μπάνια" : "Bathrooms",
+    });
   return [
     ...facts,
     ...property.additionalFacts.map((fact) => {

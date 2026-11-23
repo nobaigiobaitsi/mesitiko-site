@@ -4,7 +4,8 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import { createServer } from "vite";
-import { properties } from "../src/data/properties.js";
+import { properties } from "./fixtures/catalog.js";
+import { fileURLToPath } from "node:url";
 import { identifyRoute } from "../src/lib/routing.js";
 
 let server, Property, PropertyCard, Header, Footer, Listings;
@@ -14,6 +15,22 @@ before(async () => {
   server = await createServer({
     server: { middlewareMode: true },
     appType: "custom",
+    resolve: {
+      alias: [
+        {
+          find: "../data/properties.js",
+          replacement: fileURLToPath(
+            new URL("./fixtures/catalog.js", import.meta.url),
+          ),
+        },
+        {
+          find: "./properties.js",
+          replacement: fileURLToPath(
+            new URL("./fixtures/catalog.js", import.meta.url),
+          ),
+        },
+      ],
+    },
   });
   ({ Listings } = await server.ssrLoadModule("/src/pages/Listings.jsx"));
   ({ Property } = await server.ssrLoadModule("/src/pages/Property.jsx"));

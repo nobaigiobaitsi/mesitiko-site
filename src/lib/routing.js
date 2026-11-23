@@ -1,4 +1,4 @@
-import { routes } from "../data/routes.js";
+import { routes, routesFor } from "../data/routes.js";
 import { properties } from "../data/properties.js";
 
 export const languages = ["el", "en"];
@@ -20,7 +20,8 @@ export function normalizePath(pathname) {
 export function identifyRoute(pathname, catalog = properties) {
   const original = normalizePath(pathname);
   const path = aliases[original] || original;
-  for (const [pageKey, pair] of Object.entries(routes)) {
+  const pairs = catalog === properties ? routes : routesFor(catalog);
+  for (const [pageKey, pair] of Object.entries(pairs)) {
     for (const lang of languages) {
       if (pair[lang].toLowerCase() !== path.toLowerCase()) continue;
       const property = pageKey.startsWith("property-")
@@ -57,7 +58,8 @@ export function getStaticRoutes(catalog = properties) {
   const visible = new Set(
     catalog.filter((p) => p.status !== "hidden").map((p) => `property-${p.id}`),
   );
-  return Object.entries(routes).flatMap(([key, pair]) =>
+  const pairs = catalog === properties ? routes : routesFor(catalog);
+  return Object.entries(pairs).flatMap(([key, pair]) =>
     key.startsWith("property-") && !visible.has(key)
       ? []
       : languages.map((lang) => ({ pageKey: key, lang, path: pair[lang] })),

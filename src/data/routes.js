@@ -39,12 +39,16 @@ const pageRoutes = {
   },
 };
 
-export const routes = {
-  ...pageRoutes,
-  ...Object.fromEntries(
-    properties.map((property) => [
-      `property-${property.id}`,
-      { el: property.locales.el.path, en: property.locales.en.path },
-    ]),
-  ),
-};
+export function routesFor(catalog) {
+  return {
+    ...pageRoutes,
+    ...Object.fromEntries(
+      catalog.map((property) => [
+        `property-${property.id}`,
+        { el: property.locales.el.path, en: property.locales.en.path },
+      ]),
+    ),
+  };
+}
+
+export const routes = routesFor(properties);

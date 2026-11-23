@@ -17,7 +17,7 @@ export function Property({ property, lang }) {
   const features = (data.features || []).filter((feature) => feature.trim());
   const el = lang === "el";
   const mapUrl = propertyMapUrl(property.mapUrl, lang);
-  const location = data.location || data.address;
+  const location = data.location?.trim() === data.address?.trim() ? "" : data.location;
   const section = propertySection(property, lang);
   const { state } = useLocation();
   const previous = state?.listingReturn;
@@ -86,7 +86,7 @@ export function Property({ property, lang }) {
                 {property.reference || property.id}
               </p>
               <h1>{data.title}</h1>
-              <p className="lpd-address">{data.address}</p>
+              {data.address && <p className="lpd-address">{data.address}</p>}
             </div>
             <div className="lpd-header-price">
               <div className="lpd-price">

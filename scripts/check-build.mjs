@@ -2,10 +2,24 @@ import assert from "node:assert/strict";
 import { readFile, access } from "node:fs/promises";
 import path from "node:path";
 import { getStaticRoutes } from "../src/lib/routing.js";
-import { properties } from "../src/data/properties.js";
+import { loadEnv } from "vite";
+import { normalizeBasePath } from "../src/lib/urls.js";
 
 // Inspect shipped HTML rather than trusting the browser-only React tree.
-const routes = getStaticRoutes();
+const base = normalizeBasePath(process.env.VITE_BASE_PATH || loadEnv("production", process.cwd()).VITE_BASE_PATH);
+const sitemap = await readFile("dist/sitemap.xml", "utf8");
+const status = JSON.parse(await readFile("dist/publication-status.json", "utf8"));
+const pages = getStaticRoutes([]);
+const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => {
+  const pathname = decodeURI(new URL(url).pathname);
+  assert.ok(pathname.startsWith(base), pathname);
+  const route = "/" + pathname.slice(base.length);
+  return { path: route, lang: route.startsWith("/en/") ? "en" : "el" };
+});
+const paths = new Set(routes.map(route => route.path));
+assert.equal(paths.size, routes.length);
+assert.equal(routes.length, pages.length + 2 * status.count);
+for (const page of pages) assert.ok(paths.has(page.path), page.path);
 for (const route of routes) {
   const file = path.join("dist", route.path.slice(1), "index.html");
   const html = await readFile(file, "utf8");
@@ -22,12 +36,9 @@ for (const route of routes) {
   assert.match(head, /hreflang="el"/);
   assert.match(head, /hreflang="en"/);
   assert.doesNotMatch(html, /wp-block-|hostinger-|<!--app-head-->/);
-  if (route.pageKey.startsWith("property-")) {
-    const listing = properties.find(
-      (item) => `property-${item.id}` === route.pageKey,
-    );
-    assert.ok(html.includes(listing.locales[route.lang].title), file);
-    assert.ok(html.includes(listing.photos[0].src), file);
+  if (!pages.some(page => page.path === route.path)) {
+    assert.match(html, /class="lpd-reference"/, file);
+    assert.match(html, /src="[^"]*\/_crm\//, file);
   }
   const assets = [...html.matchAll(/(?:src|href)="([^"]+\.(?:js|css))"/g)].map(
     (match) => match[1],
@@ -41,8 +52,7 @@ for (const route of routes) {
 const notFound = await readFile("dist/404.html", "utf8");
 assert.match(notFound, /content="noindex, nofollow"/);
 assert.doesNotMatch(notFound, /rel="canonical"/);
-const sitemap = await readFile("dist/sitemap.xml", "utf8");
-assert.equal((sitemap.match(/<loc>/g) || []).length, routes.length);
+
 assert.doesNotMatch(sitemap, /\/404\/|#\//);
 console.log(
   `Verified shipped HTML, metadata and local bundles for ${routes.length} pages; 404 and sitemap passed.`,

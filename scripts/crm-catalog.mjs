@@ -1,5 +1,18 @@
 import { mkdir, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { importedPublicFields, importedPhotoLabels } from './legacy-listing.js';
+
+// Old snapshots do not include the import marker. The one-time import assigned
+// each property a deterministic UUID, also used as its private photo directory.
+export function upgradeImportedSnapshot(p) {
+  if (p.publicFieldsVersion === 2) return p;
+  const hex = createHash('sha256').update('leaf-import-v1:property:' + p.id).digest('hex');
+  const owner = [hex.slice(0, 8), hex.slice(8, 12), '4' + hex.slice(13, 16), '8' + hex.slice(17, 20), hex.slice(20, 32)].join('-');
+  if (!p.cover?.startsWith('crm://' + owner + '/')) return p;
+  const {locales, additionalFacts} = importedPublicFields(p);
+  return { ...p, locales, additionalFacts, photos: importedPhotoLabels(p.photos, locales), mapUrl: '', wc: null };
+}
 
 export function validateCatalog(snapshot) {
   if (!snapshot || !Array.isArray(snapshot.listings) || snapshot.listings.length > 2000 || snapshot.revision == null) throw new Error('Invalid CRM export');
@@ -34,6 +47,8 @@ export async function prepareCrmCatalog(env) {
     const response = await fetch(`${base}/rest/v1/rpc/leaf_website_export`, {method:'POST',headers:{...headers,'Content-Type':'application/json'},body:'{}',signal:AbortSignal.timeout(30000)});
     if (!response.ok) throw new Error(`CRM export failed (${response.status}); previous deployment remains live.`);
     const snapshot = validateCatalog(await response.json());
+    snapshot.listings = snapshot.listings.map(upgradeImportedSnapshot);
+    validateCatalog(snapshot); // Recheck the two migrated Kalamata routes for collisions.
     const files = new Map();
     async function materialize(src) {
       if (files.has(src)) return files.get(src);

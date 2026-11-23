@@ -119,7 +119,7 @@ export function PropertyCard({ property, lang }) {
             {localized.cardTitle}
           </Link>
         </h2>
-        <p className="lpl-address">{localized.cardAddress}</p>
+        {localized.cardAddress && <p className="lpl-address">{localized.cardAddress}</p>}
         <dl className="lpl-card-facts">
           {facts.map((fact) => (
             <div key={fact.key}>

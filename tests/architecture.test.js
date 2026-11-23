@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { properties } from "../src/data/properties.js";
-import { routes } from "../src/data/routes.js";
+import { properties } from "./fixtures/catalog.js";
+import { routesFor } from "../src/data/routes.js";
 import {
   getStaticRoutes,
   identifyRoute,
@@ -50,16 +50,17 @@ test("One edit updates rooms, bathrooms and area in cards, facts and filtering i
 });
 
 test("All bilingual routes round-trip, including encoded Greek URLs and language pairs", () => {
-  const pages = getStaticRoutes();
+  const pages = getStaticRoutes(properties);
+  const routes = routesFor(properties);
   assert.equal(pages.length, Object.keys(routes).length * 2);
   assert.equal(new Set(pages.map((page) => page.path)).size, pages.length);
   for (const page of pages) {
-    const result = identifyRoute(encodeURI(page.path));
+    const result = identifyRoute(encodeURI(page.path), properties);
     assert.equal(result.pageKey, page.pageKey);
     assert.equal(result.lang, page.lang);
     const otherLang = page.lang === "el" ? "en" : "el";
     assert.equal(
-      identifyRoute(routes[page.pageKey][otherLang]).pageKey,
+      identifyRoute(routes[page.pageKey][otherLang], properties).pageKey,
       page.pageKey,
     );
   }
