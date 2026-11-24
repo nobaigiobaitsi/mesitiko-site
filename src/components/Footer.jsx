@@ -1,3 +1,4 @@
+import { asset } from "../lib/assets.js";
 import { Link } from "react-router-dom";
 import { site, menu } from "../data/site.js";
 import { routes } from "../data/routes.js";
@@ -123,6 +124,9 @@ export function Footer({ lang }) {
         <div className="leaf-footer-bottom">
           <div className="leaf-footer-legal">
             <p>© {new Date().getFullYear()} LEAF PROPERTIES.</p>
+            <a href={asset("municipalities-sources.txt")}>
+              {el ? "Πηγή γεωγραφικών δεδομένων" : "Geographic data source"}
+            </a>
             <Link to={routes.privacy[lang]}>
               {el ? "Πολιτική Απορρήτου" : "Privacy Policy"}
             </Link>

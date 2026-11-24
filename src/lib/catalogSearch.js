@@ -1,3 +1,18 @@
+import { legacyMunicipalityId, municipalityById } from "../data/municipalities.js";
+
+export function listingMunicipality(p) {
+  if (p.municipalityId) return municipalityById(p.municipalityId);
+  const id = legacyMunicipalityId(p.area, p.locales?.el?.cardAddress, p.locales?.en?.cardAddress);
+  return municipalityById(id);
+}
+
+export function matchesMunicipality(p, area) {
+  if (area === "all") return true;
+  const id = municipalityById(area)?.id || legacyMunicipalityId(area);
+  // Old bookmarks with a non-standard area still select their original records.
+  return id ? listingMunicipality(p)?.id === id : p.area === area;
+}
+
 // Empty upper bounds mean unlimited; explicit bounds are always respected.
 export const emptySearch = {
   q: "",
@@ -26,6 +41,7 @@ export function readSearch(search = "") {
   for (const key of ["q", "area", "type"])
     if (params.get(key)?.trim())
       result[key] = params.get(key).trim().slice(0, 160);
+  result.area = legacyMunicipalityId(result.area) || result.area;
   for (const key of numericKeys) {
     const value = params.get(key);
     if (
@@ -82,7 +98,7 @@ export function searchCatalog(catalog, filters, transaction) {
     if (p.transaction !== transaction || p.status === "hidden") return false;
     if (!filters.includeClosed && ["sold", "rented"].includes(p.status))
       return false;
-    if (filters.area !== "all" && p.area !== filters.area) return false;
+    if (!matchesMunicipality(p, filters.area)) return false;
     if (filters.type !== "all" && p.type !== filters.type) return false;
     if (filters.rooms !== "" && p.rooms < Number(filters.rooms)) return false;
     for (const [field, min, max] of [
@@ -92,8 +108,11 @@ export function searchCatalog(catalog, filters, transaction) {
       if (filters[min] !== "" && p[field] < Number(filters[min])) return false;
       if (filters[max] !== "" && p[field] > Number(filters[max])) return false;
     }
+    const municipality = listingMunicipality(p);
     const text = normalizeSearch(
       [
+        municipality?.el,
+        municipality?.en,
         p.reference,
         p.id,
         ...Object.values(p.locales).flatMap((l) => [

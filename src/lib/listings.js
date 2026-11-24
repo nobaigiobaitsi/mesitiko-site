@@ -1,3 +1,5 @@
+import { listingMunicipality, matchesMunicipality } from "./catalogSearch.js";
+
 export const defaultFilters = {
   area: "all",
   type: "all",
@@ -33,7 +35,7 @@ export function selectProperties(
     (property) =>
       property.transaction === transaction &&
       property.status !== "hidden" &&
-      (filters.area === "all" || property.area === filters.area) &&
+      matchesMunicipality(property, filters.area) &&
       (filters.type === "all" || property.type === filters.type) &&
       property.rooms >= Number(filters.rooms) &&
       property.price >= filters.minPrice &&
@@ -109,6 +111,7 @@ export function propertyFacts(property, lang) {
       value: `${formatNumber(property.bathrooms, lang)}${property.wc ? ` (+${property.wc} WC)` : ""}`,
       label: el ? "Μπάνια" : "Bathrooms",
     });
+  const municipality = listingMunicipality(property);
   return [
     ...facts,
     ...property.additionalFacts.map((fact) => {
@@ -128,6 +131,8 @@ export function propertyFacts(property, lang) {
           : `${number}${units[fact.format] ? ` ${units[fact.format]}` : ""}`;
       return { key: fact.key, icon: fact.icon, value, label: fact.label[lang] };
     }),
+    ...(municipality ? [{ key: "municipality", icon: "📍", value: municipality[lang],
+      label: el ? "Περιοχή (δήμος)" : "Municipality" }] : []),
   ];
 }
 

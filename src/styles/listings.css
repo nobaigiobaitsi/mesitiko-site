@@ -635,3 +635,19 @@
     padding: 32px 18px;
   }
 }
+
+.lpl-field .municipality__control {
+  min-height: 48px;
+  border-radius: 6px;
+  border-color: #c5d0c7;
+  font-size: 15px;
+  font-weight: 400;
+}
+.lpl-field .municipality-select input {
+  min-height: 0;
+  box-shadow: none;
+}
+.municipality-select .municipality__menu {
+  z-index: 5;
+  font-weight: 400;
+}

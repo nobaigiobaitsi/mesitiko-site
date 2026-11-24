@@ -99,3 +99,24 @@ test("Price per square metre sorting remains supported", () => {
     ["2", "1"],
   );
 });
+
+test("municipality filters group different captions and preserve known old search URLs", async () => {
+  const { municipalities, legacyMunicipalityId } = await import("../src/data/municipalities.js");
+  const { propertyFacts } = await import("../src/lib/listings.js");
+  assert.equal(new Set(municipalities.map((m) => m.id)).size, 332);
+  assert.equal(legacyMunicipalityId("Δήμος Ηρακλείου"), "");
+  const place = "Παράδεισος Αμαρουσίου, στα σύνορα με Χαλάνδρι";
+  const first = { ...home, id: "A", area: place, additionalFacts: [] };
+  const second = { ...first, id: "B", municipalityId: "marousi", area: "Κέντρο" };
+  const third = { ...first, id: "C", municipalityId: "chalandri" };
+  const unknown = { ...first, id: "D", area: "κοντά σε δύο δήμους" };
+  const catalog = [first, second, third, unknown];
+  const ids = (area) => searchCatalog(catalog, { ...emptySearch, area }, "buy").map((p) => p.id);
+  assert.deepEqual(ids("marousi"), ["A", "B"]);
+  assert.deepEqual(ids("chalandri"), ["C"]);
+  assert.deepEqual(ids("all"), ["A", "B", "C", "D"]);
+  assert.deepEqual(ids("kalamata"), []);
+  assert.equal(readSearch(new URLSearchParams({ area: place })).area, "marousi");
+  for (const [lang, name] of [["el", "Μαρούσι"], ["en", "Marousi"]])
+    assert.equal(propertyFacts(second, lang).find((f) => f.key === "municipality").value, name);
+});

@@ -3,9 +3,12 @@ import { Link, useSearchParams } from "react-router-dom";
 import { properties } from "../data/properties.js";
 import { routes } from "../data/routes.js";
 import { site } from "../data/site.js";
+import { MunicipalitySelect } from "../components/MunicipalitySelect.jsx";
+import { municipalityById } from "../data/municipalities.js";
 import { PropertyCard } from "../components/PropertyCard.jsx";
 import {
   emptySearch,
+  listingMunicipality,
   readSearch,
   writeSearch,
   rangeError,
@@ -14,13 +17,6 @@ import {
 import { formatNumber } from "../lib/listings.js";
 
 const subscribe = () => () => {};
-const areaNames = {
-  peristeri: ["Περιστέρι", "Peristeri"],
-  kalamata: ["Καλαμάτα", "Kalamata"],
-  "roda-kerkyra": ["Ρόδα Κέρκυρας", "Roda, Corfu"],
-  ekali: ["Εκάλη", "Ekali"],
-  pagkrati: ["Παγκράτι", "Pagrati"],
-};
 const typeNames = {
   diamerisma: ["Διαμέρισμα", "Apartment"],
   monokatoikia: ["Μονοκατοικία", "Detached house"],
@@ -75,29 +71,19 @@ function Catalog({ lang, transaction, search, onChange }) {
   const catalog = properties.filter(
     (p) => p.transaction === transaction && p.status !== "hidden",
   );
-  const areas = [
-    ...new Map(
-      catalog.map((p) => [
-        p.area,
-        areaNames[p.area]?.[el ? 0 : 1] ||
-          p.locales[lang].cardAddress.replace(/^📍\s*/, "") ||
-          p.locales[lang].location ||
-          p.area,
-      ]),
-    ).entries(),
-  ].sort((a, b) => a[1].localeCompare(b[1], lang));
+  const availableIds = new Set(catalog
+    .filter((p) => draft.includeClosed || !["sold", "rented"].includes(p.status))
+    .map((p) => listingMunicipality(p)?.id).filter(Boolean));
   const types = [...new Set(catalog.map((p) => p.type))].map((key) => [
     key,
     typeNames[key]?.[el ? 0 : 1] || key,
   ]);
   const results = searchCatalog(properties, active, transaction);
-  const areaLabel = (value) =>
-    areas.find(([key]) => key === value)?.[1] || value;
   const typeLabel = (value) =>
     types.find(([key]) => key === value)?.[1] || value;
   const chipLabels = {
     q: t("Αναζήτηση: ", "Search: ") + active.q,
-    area: areaLabel(active.area),
+    area: municipalityById(active.area)?.[lang] || active.area,
     type: typeLabel(active.type),
     minPrice:
       t("Από ", "From ") + formatNumber(Number(active.minPrice), lang) + " €",
@@ -187,26 +173,17 @@ function Catalog({ lang, transaction, search, onChange }) {
         </nav>
         <form onSubmit={submit}>
           <div className="lpl-primary-fields">
-            <label className="lpl-field">
-              <span>{t("Περιοχή", "Location")}</span>
-              <select
-                value={draft.area}
-                onChange={(event) => set("area", event.target.value)}
-              >
-                <option value="all">
-                  {t("Όλες οι περιοχές", "All locations")}
-                </option>
-                {!areas.some(([key]) => key === draft.area) &&
-                  draft.area !== "all" && (
-                    <option value={draft.area}>{draft.area}</option>
-                  )}
-                {areas.map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <div className="lpl-field">
+              <label htmlFor="search-municipality">{t("Περιοχή (δήμος)", "Municipality")}</label>
+              <MunicipalitySelect
+                id="search-municipality"
+                label={t("Περιοχή (δήμος)", "Municipality")}
+                lang={lang}
+                value={draft.area === "all" ? "" : draft.area}
+                availableIds={availableIds}
+                onChange={(id) => set("area", id || "all")}
+              />
+            </div>
             <label className="lpl-field">
               <span>{t("Τύπος ακινήτου", "Property type")}</span>
               <select
